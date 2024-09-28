@@ -1,0 +1,133 @@
+body {
+    background-color: #001f3f; /* Dark navy blue */
+    color: #ffffff; /* White text for contrast */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    height: 100vh; /* Full height of the viewport */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Styling for the heading (h1) */
+h1 {
+    font-size: 5rem;        /* Large font size */
+    opacity: 0.8;           /* Less opaque (80% visibility) */
+    color: #ffffff;         /* White text */
+    position: absolute;     /* Use absolute positioning */
+    top: 25%;               /* Position 75% from the top of the viewport */
+    transform: translateY(-50%); /* Center the heading vertically */
+    text-align: center;     /* Center the text */
+    margin: 0; 
+}
+/* Sidebar styles */
+.sidebar {
+    width: 200px;
+    height: 100%;
+    background-color: #004080; /* Darker shade for the sidebar */
+    color: white;
+    position: fixed;
+    top: 0;
+    left: -200px; /* Initially hidden */
+    transition: left 0.3s ease;
+    z-index: 1000; /* Ensure sidebar is on top */
+}
+
+/* Positioning the navbar */
+.navbar {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #001f3f; /* Matching your existing color */
+}
+
+/* Menu icon styles */
+.menu-icon {
+    font-size: 30px;
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+/* Sidebar item styles */
+.sidebar-item {
+    display: block;
+    padding: 15px;
+    text-decoration: none;
+    color: white;
+}
+
+.sidebar-item:hover {
+    background-color: #00509e; /* Change color on hover */
+}
+
+/* Add some padding to the content to avoid overlap with the sidebar */
+.content {
+    padding: 20px;
+    margin-left: 20px; /* Adjust according to your layout */
+}
+
+/* Optional: to give some space for the sidebar when expanded */
+.content {
+    margin-left: 20px;
+    transition: margin-left 0.3s ease; /* Smooth transition */
+}
+/* Existing CSS styles here... */
+/* Positioning the question box in the center */
+.question-background {
+    background-color: rgb(255, 255, 255); /* Semi-transparent black */
+    border-radius: 15px; /* Rounded corners */
+    position: fixed; /* Keep it fixed */
+    top: 52%; /* Same top value as question box */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Center using transform */
+    width: 30%; /* Slightly wider than the question box */
+    height: 10%;
+    padding: 20px; /* Padding for the background box */
+    z-index: 1; /* Behind the question box */
+}
+.question-box {
+    background-color: transparent; /* Make the background transparent */
+    color: white;
+    padding: 20px;
+    position: fixed; /* Keep fixed positioning */
+    top: 60%; /* Center vertically */
+    left: 80%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Center using transform */
+    width: 80%; /* Adjust width as needed */
+    text-align: left; /* Align text to the left */
+    border-radius: 10px; /* Rounded corners */
+    z-index: 2;
+}
+
+/* Styles for the message bubbles */
+.message {
+    display: flex;
+    align-items: center; /* Center items vertically */
+    margin-bottom: 15px; /* Space between messages */
+}
+
+.icon {
+    font-size: 2rem; /* Size of the person icon */
+    margin-right: 10px; /* Space between icon and bubble */
+}
+
+/* Message bubble styles */
+.bubble {
+    background-color: #00509e; /* Color of the message bubble */
+    color: white;
+    padding: 10px 15px; /* Padding inside the bubble */
+    border-radius: 20px; /* Rounded corners for the bubble */
+    max-width: 70%; /* Limit the width of the bubble */
+    position: relative; /* For the arrow effect */
+}
+
+/* Optional: Add a tail effect for the message bubble */
+.bubble::after {
+    content: '';
+    position: absolute;
+    bottom: 100%; /* Position above the bubble */
+    left: 20px; /* Adjust to align with the bubble */
+    border-width: 10px;
+    border-style: solid;
+    border-color: transparent transparent #00509e transparent; /* Triangle pointing down */
+}
