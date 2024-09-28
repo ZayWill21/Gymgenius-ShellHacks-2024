@@ -8,3 +8,4 @@ AUTHORS:
 
 ABOUT:
 Project developed during 2024 ShellHacks Hackathon at FIU
+Workout program with AI integration
