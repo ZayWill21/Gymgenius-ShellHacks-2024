@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 
 app = Flask(__name__)
 
@@ -7,6 +8,7 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///fitness_tracker.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
+migrate = Migrate(app, db)
 
 # Define a User model
 class User(db.Model):
@@ -15,6 +17,7 @@ class User(db.Model):
     age = db.Column(db.Integer, nullable=False)
     height = db.Column(db.Float, nullable=False)
     weight = db.Column(db.Float, nullable=False)
+    gender = db.Column(db.String(10), nullable=False)
 
     def __repr__(self):
         return f'<User {self.name}>'
@@ -36,7 +39,8 @@ def add_user():
         name=data['name'],
         age=data['age'],
         height=data['height'],
-        weight=data['weight']
+        weight=data['weight'],
+        gender=data['gender']
     )
     db.session.add(new_user)
     db.session.commit()
