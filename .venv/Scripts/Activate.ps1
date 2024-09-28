@@ -248,6 +248,7 @@ $Env:PATH = "$VenvExecDir$([System.IO.Path]::PathSeparator)$Env:PATH"
 
 # OPEN AI KEY PATH VAR
 $ENV:OPENAI_API_KEY = "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"
+$env:FLASK_APP = "app.py"
 
 # SIG # Begin signature block
 # MIIvIwYJKoZIhvcNAQcCoIIvFDCCLxACAQExDzANBglghkgBZQMEAgEFADB5Bgor
