@@ -1,26 +1,16 @@
-from openai import OpenAI, OpenAIError
-import pandas as pd
-from .presets import Presets
-
+from openai import OpenAI
+from .gg_handler import gg_Handler
 
 class API:
     def __init__(self) -> None:
         self.client = OpenAI()  # Defaults to os.environ.get("OPENAI_API_KEY")
-        self.details = ""
-        self.prompt = f"""   
-            Return a table in json format for {self.details}.
-            Here is a sample table: {Presets.get_table_example()}
-        """
+        self.rspn_handler = gg_Handler()
     
-    def test(self):
-       # response = self.client.chat.completions.create(
-        #model="gpt-4o-mini",
-        #messages=[
-        #    {"role": "user", "content": self.prompt}
-        #]
-        #)
-
-        print(self.prompt)
-
-
-
+    def send_request(self, req_type, crafted_request):
+        response = self.client.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=[
+                {"role": "user", "content": crafted_request}
+            ]
+        )
+        self.rspn_handler.give(req_type, response)
