@@ -20,3 +20,89 @@ h1 {
     text-align: center;     /* Center the text */
     margin: 0; 
 }
+/* Sidebar styles */
+.sidebar {
+    width: 200px;
+    height: 100%;
+    background-color: #004080; /* Darker shade for the sidebar */
+    color: white;
+    position: fixed;
+    top: 0;
+    left: -200px; /* Initially hidden */
+    transition: left 0.3s ease;
+    z-index: 1000; /* Ensure sidebar is on top */
+}
+
+/* Positioning the navbar */
+.navbar {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #001f3f; /* Matching your existing color */
+}
+
+/* Menu icon styles */
+.menu-icon {
+    font-size: 30px;
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+/* Sidebar item styles */
+.sidebar-item {
+    display: block;
+    padding: 15px;
+    text-decoration: none;
+    color: white;
+}
+
+.sidebar-item:hover {
+    background-color: #00509e; /* Change color on hover */
+}
+
+/* Add some padding to the content to avoid overlap with the sidebar */
+.content {
+    padding: 20px;
+    margin-left: 20px; /* Adjust according to your layout */
+}
+
+/* Optional: to give some space for the sidebar when expanded */
+.content {
+    margin-left: 20px;
+    transition: margin-left 0.3s ease; /* Smooth transition */
+}
+/* Existing CSS styles here... */
+
+/* Question box styles */
+.question-box {
+    background-color: #003366; /* Dark blue background */
+    color: white;
+    padding: 20px;
+    position: fixed; /* Fixed positioning */
+    bottom: 0; /* Position at the bottom */
+    left: 0; /* Align to the left */
+    width: 100%; /* Full width */
+    text-align: center; /* Center text */
+}
+
+/* Option button styles */
+.options {
+    display: flex;
+    justify-content: center; /* Center the buttons */
+    margin-top: 10px;
+}
+
+.option {
+    background-color: #00509e; /* Button background color */
+    color: white; /* Button text color */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px 15px; /* Padding for the buttons */
+    margin: 0 5px; /* Spacing between buttons */
+    cursor: pointer; /* Pointer on hover */
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+.option:hover {
+    background-color: #0073e6; /* Lighter blue on hover */
+}
