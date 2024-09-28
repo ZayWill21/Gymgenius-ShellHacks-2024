@@ -1,23 +1,22 @@
-html, body {
+body {
     background-color: #001f3f; /* Dark navy blue */
-    color: #ffffff;
-    height: 100%;
+    color: #ffffff; /* White text for contrast */
+    font-family: Arial, sans-serif;
     margin: 0;
+    height: 100vh; /* Full height of the viewport */
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
 }
 
-h1{
-    font-size: 3rem;
-    font-family: 'Helvetica', Arial, Helvetica, sans-serif;
-    text-align: center;
-    color: #fff9f9;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    padding: 10px;
-    background-color: #554d4d;
-    border: 2px solid #ddd;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+/* Styling for the heading (h1) */
+h1 {
+    font-size: 5rem;        /* Large font size */
+    opacity: 0.8;           /* Less opaque (80% visibility) */
+    color: #ffffff;         /* White text */
+    position: absolute;     /* Use absolute positioning */
+    top: 25%;               /* Position 75% from the top of the viewport */
+    transform: translateY(-50%); /* Center the heading vertically */
+    text-align: center;     /* Center the text */
+    margin: 0; 
 }
