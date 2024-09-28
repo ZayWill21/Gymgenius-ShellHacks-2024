@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GymGenius Login</title>
-    <link rel="Stylesheet" href="{{ url_for('static', filename='login_page.css') }}">
+    <link rel="Stylesheet" href="/static/login_page.css">
 </head>
 <body>
     <h1>GymGenius Login</h1>
@@ -40,7 +40,7 @@
                 <button type="submit" class="submit-btn">Login</button>
             </div>
             <div class="form-group">
-                <p>Don't have an account? <a href="{{url_for('register')}}">Register here</a></p>
+                <p>Don't have an account? <a href="/templates/registration.html">Register here</a></p>
             </div>
         </form>
     </div>
