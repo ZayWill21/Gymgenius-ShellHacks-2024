@@ -197,7 +197,6 @@ def get_users():
     users_list = [{"id": user.id, "name": user.name, "age": user.age, "height": user.height, "weight": user.weight} for user in users]
     return jsonify(users_list), 200
 
-<<<<<<< HEAD
 # Define a route to add a new conversation (API)
 @app.route('/add_conversation', methods=['POST'])
 def add_conversation():
@@ -272,7 +271,5 @@ def login():
         return jsonify({'error': 'User not found'}), 404
 
 
-=======
->>>>>>> 37882a52467d503ad6da802c304789080545235f
 if __name__ == "__main__":
     app.run(debug=True)
