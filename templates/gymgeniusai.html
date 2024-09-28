@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='gymgeniusai.css') }}">
 </head>
 <body>
+    <!-- Logo Image (before the chat container) -->
+    <img src="{{ url_for('static', filename='gymgenius.png') }}" class="background-logo" alt="GymGenius Logo">
     <div class="navbar">
         <div class="menu-icon" id="menu-icon">&#9776;</div>
         <div class="navbar-items">
@@ -15,6 +17,7 @@
             <a href="#services" class="navbar-item">Services</a>
             <a href="#contact" class="navbar-item">Contact</a>
         </div>
+        <button class="logout-btn" id="logoutBtn">Logout</button> <!-- Logout button -->
     </div>
 
     <h1>GymGenius</h1>
@@ -33,6 +36,7 @@
     </div>
 
     <script>
+        // Handle message submission
         document.getElementById('submitBtn').addEventListener('click', function() {
             const userInput = document.getElementById('userInput').value;
             if (!userInput) return; // Don't send empty messages
@@ -40,6 +44,7 @@
             // Append user's message to chat box
             addMessage('You', userInput);
 
+            // Send user's message to backend
             fetch('/converse', {
                 method: 'POST',
                 headers: {
@@ -54,23 +59,42 @@
             .catch(error => console.error('Error:', error));
         });
 
+        // Function to add messages to the chat box
         function addMessage(sender, text) {
-    const chatBox = document.getElementById('chat-box');
-    const messageDiv = document.createElement('div');
-    messageDiv.className = 'message';
+            const chatBox = document.getElementById('chat-box');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message';
 
-    if (sender === 'You') {
-        messageDiv.classList.add('user-message');
-        messageDiv.innerHTML = `<div class="bubble user-bubble">${text}</div>`;
-    } else {
-        messageDiv.classList.add('ai-message');
-        messageDiv.innerHTML = `<div class="icon">🤖</div><div class="bubble">${text}</div>`;
-    }
-    
-    chatBox.appendChild(messageDiv);
-    chatBox.scrollTop = chatBox.scrollHeight; // Scroll to the bottom
-}
+            if (sender === 'You') {
+                messageDiv.classList.add('user-message');
+                messageDiv.innerHTML = `<div class="bubble user-bubble">${text}</div>`;
+            } else {
+                messageDiv.classList.add('ai-message');
+                messageDiv.innerHTML = `<div class="icon">🤖</div><div class="bubble">${text}</div>`;
+            }
+            
+            chatBox.appendChild(messageDiv);
+            chatBox.scrollTop = chatBox.scrollHeight; // Scroll to the bottom
+        }
 
+        // Function to handle logout
+        document.getElementById('logoutBtn').addEventListener('click', function() {
+            // Step 1: Clear any session data (localStorage, sessionStorage, cookies)
+            localStorage.clear();  // Clear all localStorage data
+            sessionStorage.clear(); // Clear all sessionStorage data
+
+            // Clear cookies (if you're using cookies for sessions)
+            document.cookie = "session=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            
+            // Step 2: Inform the backend and redirect the user to the login or home page after logout
+            fetch('/logout', {
+                method: 'POST'
+            })
+            .then(() => {
+                window.location.href = '/login';  // Redirect after logout
+            })
+            .catch(error => console.error('Logout failed:', error));
+        });
     </script>
 </body>
 </html>

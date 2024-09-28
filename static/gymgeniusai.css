@@ -1,7 +1,7 @@
 /* Styles for the body */
 body {
-    background-color: #001f3f; /* Dark navy blue */
-    color: #ffffff; /* White text for contrast */
+    background-color: #ffffff; /* Dark navy blue */
+    color: #000000; /* White text for contrast */
     font-family: Arial, sans-serif;
     margin: 0;
     padding-top: 60px; /* Space for the fixed navbar */
@@ -9,45 +9,26 @@ body {
     flex-direction: column;
     align-items: center; /* Center content */
 }
-
-/* Styles for the navigation bar */
-.navbar {
-    background-color: #00509e; /* Navbar background color */
-    width: 100%; /* Full width */
-    display: flex; /* Flex layout */
-    justify-content: space-between; /* Space items evenly */
-    align-items: center; /* Center items vertically */
-    padding: 10px 20px; /* Padding inside the navbar */
-    position: fixed; /* Fixed positioning to stay at the top */
-    top: 0; /* Align to the top */
-    left: 0; /* Align to the left */
-    z-index: 1000; /* Ensure it stays on top of other elements */
+h1 {
+font-size: 500%;
 }
 
-/* Style for the menu icon */
-.menu-icon {
-    font-size: 1.5rem; /* Size of the menu icon */
-    cursor: pointer; /* Pointer cursor on hover */
-}
-
-/* Styles for navbar items */
+/* Adjust navbar-items to be centered and spaced evenly */
 .navbar-items {
     display: flex; /* Horizontal layout for navbar items */
     gap: 20px; /* Space between items */
+    margin: 0 auto; /* Center the navbar items */
 }
-
+/* Styles for the navigation bar links */
 .navbar-item {
-    color: white; /* Text color */
+    color: white; /* Make the navbar links white */
     text-decoration: none; /* Remove underline */
-    font-weight: bold; /* Bold text */
-    transition: color 0.3s; /* Smooth transition for hover effect */
 }
 
-/* Navbar item hover effect */
+/* Optional: Add a hover effect for better UX */
 .navbar-item:hover {
-    color: #ffd700; /* Change color on hover */
+    text-decoration: underline; /* Underline on hover */
 }
-
 /* Styles for the chat container */
 .chat-container {
     display: flex;
@@ -193,4 +174,70 @@ body {
     border-width: 10px;
     border-style: solid;
     border-color: transparent transparent #e0e0e0 transparent; /* Triangle pointing down */
+}
+/* Adjusted Styles for the navigation bar */
+.navbar {
+    background-color: #00509e; /* Navbar background color */
+    width: 100%; /* Full width */
+    display: flex; /* Flex layout */
+    justify-content: space-between; /* Space between the hamburger icon and logout button */
+    align-items: center; /* Center items vertically */
+    padding: 10px 20px; /* Padding inside the navbar */
+    position: fixed; /* Fixed positioning to stay at the top */
+    top: 0; /* Align to the top */
+    left: 0; /* Align to the left */
+    z-index: 1000; /* Ensure it stays on top of other elements */
+}
+
+/* Styles for the menu icon (hamburger icon) on the top-left */
+.menu-icon {
+    font-size: 2.5rem; /* Increase the size */
+    color: white; /* Make the hamburger icon white */
+    cursor: pointer; /* Pointer cursor on hover */
+    position: relative; /* Remove absolute positioning to keep it in flow */
+    margin-left: 10px; /* Add some space from the left edge */
+}
+
+/* Optional: Add hover effect */
+.menu-icon:hover {
+    color: #f0f0f0; /* Slightly lighter white on hover */
+}
+
+/* Styles for the logout button on the top-right */
+.logout-btn {
+    background-color: #d9534f; /* Bootstrap danger color */
+    color: white; /* Text color */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 5px 10px; /* Small padding */
+    cursor: pointer; /* Pointer cursor */
+    font-size: 0.9rem; /* Slightly smaller font */
+    position: relative; /* Remove absolute positioning */
+    margin-right: 30px; /* Space from the right */
+    transition: background-color 0.3s; /* Smooth transition */
+    z-index: 1001; /* Ensure it stays on top of navbar */
+}
+
+/* Logout button hover effect */
+.logout-btn:hover {
+    background-color: #c9302c; /* Darker red on hover */
+}
+/* Background logo (large) */
+.background-logo {
+    position: absolute; /* Absolute positioning to place it behind the chat box */
+    top: 50%; /* Move it to the center of the viewport */
+    left: 50%; /* Move it to the center of the viewport */
+    transform: translate(-50%, -50%); /* Center it by offsetting 50% of its own size */
+    opacity: 0.3; /* Make it very transparent so it doesn't distract */
+    z-index: 0; /* Ensure it is behind the chat box */
+    width: 1000px; /* Large width (80% of the viewport width) */
+    max-width: 1000px; /* Limit the maximum width to 800px for larger screens */
+    height: auto; /* Maintain aspect ratio based on width */
+    pointer-events: none; /* Prevent it from blocking interaction with other elements */
+}
+
+/* Ensure the chat box is on top */
+.chat-container {
+    position: relative; /* Ensure chat box is on top of the logo */
+    z-index: 1; /* Higher z-index than the logo */
 }
