@@ -19,9 +19,28 @@
         </div>
         <button class="logout-btn" id="logoutBtn">Logout</button> <!-- Logout button -->
     </div>
+    
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <ul class="flashed-messages">
+                {% for category, message in messages %}
+                    <li class="{{ category }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
 
     <div class="chat-container">
         <div class="chat-box" id="chat-box">
+            {% for conversation in conversations %}
+                <div class="message user-message">
+                    <div class="bubble user-bubble">{{ conversation.user_question }}</div>
+                </div>
+                <div class="message ai-message">
+                    <div class="icon">🤖</div>
+                    <div class="bubble">{{ conversation.ai_response }}</div>
+                </div>
+            {% endfor %}
             <div class="message">
                 <div class="icon">🤖</div>
                 <div class="bubble">Welcome to GymGenius! How can I assist you today?</div>
@@ -85,11 +104,11 @@
             document.cookie = "session=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
             
             // Step 2: Inform the backend and redirect the user to the login or home page after logout
-            fetch('/logout', {
+            fetch('{{url_for("logout")}}', {
                 method: 'POST'
             })
             .then(() => {
-                window.location.href = '/login';  // Redirect after logout
+                window.location.href = "{{url_for('login')}}";  // Redirect after logout
             })
             .catch(error => console.error('Logout failed:', error));
         });

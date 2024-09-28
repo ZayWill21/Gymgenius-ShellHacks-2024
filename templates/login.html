@@ -15,7 +15,16 @@
 
     <!-- Login Form -->
     <div class="login-box">
-        <form id="login-form" action="{{url_for('login')}}" method="POST">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <ul class="flashed-messages">
+                {% for category, message in messages %}
+                    <li class="{{ category }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        {% endwith %}
+        <form id="login-form" action="{{ url_for('login') }}" method="POST">
             <div class="form-group">
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" required>
@@ -28,7 +37,7 @@
                 <button type="submit" class="submit-btn">Login</button>
             </div>
             <div class="form-group">
-                <p>Don't have an account? <a href="/templates/registration.html">Register here</a></p>
+                <p>Don't have an account? <a href="{{url_for('register')}}">Register here</a></p>
             </div>
         </form>
     </div>

@@ -8,6 +8,7 @@ body {
     flex-direction: column;
     align-items: center;
 }
+
 /* Styling for the heading */
 h1 {
     font-size: 4rem;
@@ -17,20 +18,22 @@ h1 {
     text-align: center;
     margin: 0;
 }
+
 /* Styling the logo */
 .logo {
     position: absolute;  /* Make it absolute to position freely */
-    top: 0%;          /* Adjust the top margin */
-    left: 0%;         /* Adjust the left margin */
+    top: 0%;            /* Adjust the top margin */
+    left: 0%;           /* Adjust the left margin */
 }
 
 .logo img {
     height: 350px;      /* Adjust size as needed */
     width: auto;        /* Maintain aspect ratio */
 }
+
 /* Registration box styles */
 .registration-box {
-    background-color: rgb(23, 38, 102); /* Semi-transparent */
+    background-color: rgba(23, 38, 102, 0.9); /* Semi-transparent with opacity */
     padding: 30px;
     border-radius: 15px;
     position: absolute;
@@ -55,7 +58,7 @@ select {
     width: 100%;
     padding: 10px;
     border-radius: 5px;
-    border: none;
+    border: 1px solid #ccc; /* Added a border for visibility */
     font-size: 1rem;
     background-color: white;
     color: black;
@@ -84,14 +87,13 @@ label {
     background-color: #0073e6;
 }
 
-/* Sidebar, navbar, and other existing CSS from the provided template remain the same */
-
 /* Optional: Add media query for responsive design */
 @media (max-width: 768px) {
     .registration-box {
         width: 80%;
     }
 }
+
 /* Menu icon styles */
 .menu-icon {
     font-size: 30px;

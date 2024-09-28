@@ -14,5 +14,4 @@ class API:
                 {"role": "user", "content": crafted_request}
             ]
         )
-
         return self.rspn_handler.give(req_type, response)

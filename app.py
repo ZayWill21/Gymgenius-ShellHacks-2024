@@ -48,8 +48,8 @@ class User(UserMixin, db.Model):
 # Define a Conversation model for storing AI conversation history
 class Conversation(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    conversation = db.Column(db.Text, nullable=False)  # Storing conversation data
-
+    user_question = db.Column(db.Text, nullable=False)  # Storing user question
+    ai_response = db.Column(db.Text, nullable=False)  # Storing AI response
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
     def __repr__(self):
@@ -62,12 +62,6 @@ def load_user(user_id):
 # Initialize the database
 with app.app_context():
     db.create_all()
-
-
-# Define a route to handle the root URL
-@app.route('/')
-def home():
-    return "Welcome to AI Fitness Tracker"
 
 # Define a route to register new users and log them in automatically
 @app.route('/register', methods=['GET', 'POST'])
@@ -133,6 +127,7 @@ def register():
     return render_template('registration.html')
 
 # Define a route to handle user login
+@app.route('/')
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
@@ -156,17 +151,18 @@ def login():
     return render_template('login.html')
 
 # Define a route for logout
-@app.route('/logout')
+@app.route('/logout', methods=['GET', 'POST'])
 def logout():
     logout_user()
     flash('You have been logged out.', 'info')
-    return redirect(url_for('home'))
+    return redirect(url_for('login'))
 
 # Define a protected route that requires login
 @app.route('/personalize-experience', methods=['GET'])
 @login_required
 def personalize():
-    return render_template('gymgeniusai.html')
+    conversations = Conversation.query.filter_by(user_id=current_user.id).all()
+    return render_template('gymgeniusai.html', conversations=conversations)
 
 @app.route('/converse', methods=['POST'])
 @login_required
@@ -184,14 +180,23 @@ def process_input():
 
         # Make the AI request synchronously (wait for response)
         ai_response = gg_personalizer.make_request("Gain muscle, lose weight, get stronger, defend yourself")
-        print(ai_response)
+
+        # Save the conversation to the database
+        new_conversation = Conversation(
+            user_question=user_question,
+            ai_response=ai_response,
+            user_id=current_user.id  # Use the current user's ID
+        )
+        db.session.add(new_conversation)
+        db.session.commit()
+        
         # Return the AI response to the user
         return jsonify({'answer': ai_response}), 200
 
     except Exception as e:
         # Handle any potential exceptions
         return jsonify({'answer': f"An error occurred: {str(e)}"}), 500
-    
+
 # Define a route to add user data (API)
 @app.route('/add_user', methods=['POST'])
 def add_user():
@@ -248,37 +253,6 @@ def get_conversations(user_id):
     conversations = Conversation.query.filter_by(user_id=user_id).all()
     conversations_list = [{"id": conv.id, "conversation": conv.conversation} for conv in conversations]
     return jsonify(conversations_list), 200
-
-<<<<<<< HEAD
-# Define a route to render the registration form
-@app.route('/register', methods=['GET', 'POST'])
-def register():
-    if request.method == 'POST':
-        name = request.form['name']
-        age = request.form['age']
-        height = request.form['height']
-        weight = request.form['weight']
-        gender = request.form['gender']
-        email = request.form['email']
-        password = request.form['password']
-        
-        new_user = User(
-            name=name,
-            age=age,
-            height=height,
-            weight=weight,
-            gender=gender,
-            email=email,
-            password=password
-        )
-        db.session.add(new_user)
-        db.session.commit()
-        flash('Registration successful!', 'success')
-        return redirect(url_for('home'))
-    
-    return render_template('registration.html')
-=======
->>>>>>> 6ae65cfd5b8fdf7c8f014884348cfe1b6a5aaae0
 
 if __name__ == "__main__":
     app.run(debug=True)
