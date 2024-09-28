@@ -19,9 +19,28 @@
         </div>
         <button class="logout-btn" id="logoutBtn">Logout</button> <!-- Logout button -->
     </div>
+    
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <ul class="flashed-messages">
+                {% for category, message in messages %}
+                    <li class="{{ category }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
 
     <div class="chat-container">
         <div class="chat-box" id="chat-box">
+            {% for conversation in conversations %}
+                <div class="message user-message">
+                    <div class="bubble user-bubble">{{ conversation.user_question }}</div>
+                </div>
+                <div class="message ai-message">
+                    <div class="icon">🤖</div>
+                    <div class="bubble">{{ conversation.ai_response }}</div>
+                </div>
+            {% endfor %}
             <div class="message">
                 <div class="icon">🤖</div>
                 <div class="bubble">Welcome to GymGenius! How can I assist you today?</div>

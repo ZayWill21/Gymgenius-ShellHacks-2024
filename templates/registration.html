@@ -19,6 +19,15 @@
         <img src="{{ url_for('static', filename='gymgenius.png') }}" alt="Gym Genius logo" id="gymgenius-logo">
     </div>
     <div class="registration-box">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <ul class="flashed-messages">
+                {% for category, message in messages %}
+                    <li class="{{ category }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        {% endwith %}
         <form id="registration-form" action="{{ url_for('register') }}" method="POST">
             <div class="form-group">
                 <label for="name">Name:</label>
