@@ -50,7 +50,7 @@ class Conversation(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     conversation = db.Column(db.Text, nullable=False)  # Storing conversation data
 
-    user_id = db.Column(db.Intger, db.ForeignKey('user.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
     def __repr__(self):
         return f'<Conversation {self.id}>'
@@ -137,7 +137,7 @@ def register():
 def login():
     if current_user.is_authenticated:
         flash('You are already logged in. No need to login again.', 'info')
-        return redirect(url_for('home'))  # Redirect to the personalize page or wherever you want
+        return redirect(url_for('personalize'))  # Redirect to the personalize page or wherever you want
 
     if request.method == 'POST':
         email = request.form['email']
@@ -248,47 +248,6 @@ def get_conversations(user_id):
     conversations = Conversation.query.filter_by(user_id=user_id).all()
     conversations_list = [{"id": conv.id, "conversation": conv.conversation} for conv in conversations]
     return jsonify(conversations_list), 200
-
-# Define a route to render the registration form
-@app.route('/register', methods=['GET', 'POST'])
-def register():
-    if request.method == 'POST':
-        name = request.form['name']
-        age = request.form['age']
-        height = request.form['height']
-        weight = request.form['weight']
-        gender = request.form['gender']
-        email = request.form['email']
-        password = request.form['password']
-        
-        new_user = User(
-            name=name,
-            age=age,
-            height=height,
-            weight=weight,
-            gender=gender,
-            email=email,
-            password=password
-        )
-        db.session.add(new_user)
-        db.session.commit()
-        flash('Registration successful!', 'success')
-        return redirect(url_for('home'))
-    
-    return render_template('registration.html')
-
-# Logic to link the conversation database ID to User ID
-
-
-#Collect input from Login page
-@app.route('/login', methods=['POST'])
-def login():
-    if request.method == 'POST':
-        email = request.form['email']
-        password = request.form['password']
-
-    else:  
-        return jsonify({'error': 'User not found'}), 404
 
 
 if __name__ == "__main__":
