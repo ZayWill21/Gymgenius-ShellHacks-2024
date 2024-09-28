@@ -1,6 +1,7 @@
-from flask import Flask, request, render_template, redirect, url_for, flash, jsonify
+from flask import Flask, request, render_template, redirect, url_for, flash, jsonify, session
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required, current_user
 
 app = Flask(__name__)
 
@@ -11,12 +12,16 @@ app.secret_key = 'your_secret_key'  # Needed for flash messages
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
-# Define a User model
-class User(db.Model):
+# Set up Flask-Login
+login_manager = LoginManager(app)
+login_manager.login_view = 'login'  # Route for login page
+
+# Define the User model
+class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False)
     age = db.Column(db.Integer, nullable=False)
-    height = db.Column(db.String(5), nullable=False)  # Changed to String for height
+    height = db.Column(db.String(5), nullable=False)
     weight = db.Column(db.Float, nullable=False)
     gender = db.Column(db.String(10), nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
@@ -24,6 +29,10 @@ class User(db.Model):
 
     def __repr__(self):
         return f'<User {self.name}>'
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
 
 # Initialize the database
 with app.app_context():
@@ -33,6 +42,99 @@ with app.app_context():
 @app.route('/')
 def home():
     return "Welcome to AI Fitness Tracker"
+
+# Define a route to register new users and log them in automatically
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    if current_user.is_authenticated:
+        flash('You are already logged in. No need to register again.', 'info')
+        return redirect(url_for('/'))  # Redirect to the personalize page or wherever you want
+
+    if request.method == 'POST':
+        name = request.form['name']
+        age = request.form['age']
+        height = request.form['height']
+        weight = request.form['weight']
+        gender = request.form['gender']
+        email = request.form['email']
+        password = request.form['password']
+
+        # Check if the email already exists
+        existing_user = User.query.filter_by(email=email).first()
+        if existing_user:
+            flash('Email already exists. Please use a different email.', 'danger')
+            return redirect(url_for('register'))
+
+        # Create new user
+        new_user = User(
+            name=name,
+            age=age,
+            height=height,
+            weight=weight,
+            gender=gender,
+            email=email,
+            password=password  # In a real app, make sure to hash passwords
+        )
+        db.session.add(new_user)
+        db.session.commit()
+
+        # Automatically log the user in
+        login_user(new_user)
+        
+        flash('Registration successful! You are now logged in.', 'success')
+        return redirect(url_for('personalize'))
+
+    return render_template('registration.html')
+
+# Define a route to handle user login
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if current_user.is_authenticated:
+        flash('You are already logged in. No need to login again.', 'info')
+        return redirect(url_for('/'))  # Redirect to the personalize page or wherever you want
+
+    if request.method == 'POST':
+        email = request.form['email']
+        password = request.form['password']
+        
+        # Query for the user by email
+        user = User.query.filter_by(email=email).first()
+        
+        if user and user.password == password:  # In a real app, you should verify hashed passwords
+            login_user(user)
+            flash('Login successful!', 'success')
+            return redirect(url_for('personalize'))
+        else:
+            flash('Login failed. Please check your credentials.', 'danger')
+    
+    return render_template('login.html')
+
+# Define a route for logout
+@app.route('/logout')
+def logout():
+    logout_user()
+    flash('You have been logged out.', 'info')
+    return redirect(url_for('home'))
+
+# Define a protected route that requires login
+@app.route('/personalize-experience', methods=['GET'])
+@login_required
+def personalize():
+    return render_template('gymgeniusai.html')
+
+@app.route('/converse', methods=['POST'])
+@login_required
+def process_input():
+    data = request.get_json()
+    user_question = data.get('question', '').strip()  # Strip whitespace
+
+    if not user_question:  # Check for empty input
+        return jsonify({'answer': 'Please enter a question.'}), 400
+
+    # Here, you can process the question. For demonstration, let's return a simple response.
+    response_answer = f"You asked: {user_question}."  # Replace with your processing logic
+
+    return jsonify({'answer': response_answer}), 200
 
 # Define a route to add user data (API)
 @app.route('/add_user', methods=['POST'])
@@ -57,34 +159,6 @@ def get_users():
     users = User.query.all()
     users_list = [{"id": user.id, "name": user.name, "age": user.age, "height": user.height, "weight": user.weight} for user in users]
     return jsonify(users_list), 200
-
-# Define a route to render the registration form
-@app.route('/register', methods=['GET', 'POST'])
-def register():
-    if request.method == 'POST':
-        name = request.form['name']
-        age = request.form['age']
-        height = request.form['height']
-        weight = request.form['weight']
-        gender = request.form['gender']
-        email = request.form['email']
-        password = request.form['password']
-        
-        new_user = User(
-            name=name,
-            age=age,
-            height=height,
-            weight=weight,
-            gender=gender,
-            email=email,
-            password=password
-        )
-        db.session.add(new_user)
-        db.session.commit()
-        flash('Registration successful!', 'success')
-        return redirect(url_for('home'))
-    
-    return render_template('registration.html')
 
 if __name__ == "__main__":
     app.run(debug=True)
