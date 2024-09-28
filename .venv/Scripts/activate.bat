@@ -9,7 +9,7 @@ if defined _OLD_CODEPAGE (
 )
 
 set VIRTUAL_ENV=c:\Users\adrye\OneDrive\Documents\GitHub\ShellHacks\.venv
-
+set OPENAI_API_KEY ="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"
 if not defined PROMPT set PROMPT=$P$G
 
 if defined _OLD_VIRTUAL_PROMPT set PROMPT=%_OLD_VIRTUAL_PROMPT%
