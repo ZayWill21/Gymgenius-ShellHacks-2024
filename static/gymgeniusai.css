@@ -4,13 +4,16 @@ body {
     color: #000000; /* White text for contrast */
     font-family: Arial, sans-serif;
     margin: 0;
-    padding-top: 60px; /* Space for the fixed navbar */
     display: flex;
     flex-direction: column;
+    justify-content: space-between; /* Space between elements */
     align-items: center; /* Center content */
+    height: 100vh; /* Full height of the viewport */
 }
+
 h1 {
-font-size: 500%;
+    font-size: 500%;
+    margin-top: 100px;
 }
 
 /* Adjust navbar-items to be centered and spaced evenly */
@@ -19,6 +22,7 @@ font-size: 500%;
     gap: 20px; /* Space between items */
     margin: 0 auto; /* Center the navbar items */
 }
+
 /* Styles for the navigation bar links */
 .navbar-item {
     color: white; /* Make the navbar links white */
@@ -29,12 +33,14 @@ font-size: 500%;
 .navbar-item:hover {
     text-decoration: underline; /* Underline on hover */
 }
+
 /* Styles for the chat container */
 .chat-container {
     display: flex;
     flex-direction: column;
     align-items: center; /* Center chat box */
-    margin-top: 100px; /* Space below navbar */
+    margin-top: auto; /* Push chat box to bottom */
+    margin-bottom: 50px; /* Space from the bottom of the screen */
 }
 
 /* Styles for the chat box */
@@ -86,6 +92,7 @@ font-size: 500%;
 .options {
     display: flex; /* Align input and button */
     margin-top: 10px; /* Space between chat box and input */
+    width: 80%; /* Make the width of the input box match the chat box */
 }
 
 /* Input field styling */
@@ -94,6 +101,7 @@ font-size: 500%;
     padding: 10px; /* Padding for input */
     border: 1px solid #ccc; /* Border style */
     border-radius: 5px; /* Rounded corners */
+    width: 100%; /* Full width of the container */
 }
 
 /* Button styling */
@@ -109,19 +117,6 @@ font-size: 500%;
 /* Button hover effect */
 #submitBtn:hover {
     background-color: #003f7f; /* Darker on hover */
-}
-
-/* Styles for the chat box */
-.chat-box {
-    display: flex;
-    flex-direction: column;
-    max-height: 400px; /* Limit height */
-    overflow-y: auto; /* Enable scrolling */
-    background-color: white; /* Start with a white background */
-    border-radius: 15px; /* Rounded corners */
-    padding: 20px; /* Padding inside */
-    width: 80%; /* Center the chat box */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Optional shadow */
 }
 
 /* Styles for messages */
@@ -175,6 +170,7 @@ font-size: 500%;
     border-style: solid;
     border-color: transparent transparent #e0e0e0 transparent; /* Triangle pointing down */
 }
+
 /* Adjusted Styles for the navigation bar */
 .navbar {
     background-color: #00509e; /* Navbar background color */
@@ -222,6 +218,7 @@ font-size: 500%;
 .logout-btn:hover {
     background-color: #c9302c; /* Darker red on hover */
 }
+
 /* Background logo (large) */
 .background-logo {
     position: absolute; /* Absolute positioning to place it behind the chat box */
