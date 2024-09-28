@@ -50,7 +50,7 @@ class Conversation(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     conversation = db.Column(db.Text, nullable=False)  # Storing conversation data
 
-    user_id = db.Column(db.Intger, db.ForeignKey('user.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
     def __repr__(self):
         return f'<Conversation {self.id}>'
@@ -137,7 +137,7 @@ def register():
 def login():
     if current_user.is_authenticated:
         flash('You are already logged in. No need to login again.', 'info')
-        return redirect(url_for('home'))  # Redirect to the personalize page or wherever you want
+        return redirect(url_for('personalize'))  # Redirect to the personalize page or wherever you want
 
     if request.method == 'POST':
         email = request.form['email']
@@ -249,6 +249,7 @@ def get_conversations(user_id):
     conversations_list = [{"id": conv.id, "conversation": conv.conversation} for conv in conversations]
     return jsonify(conversations_list), 200
 
+<<<<<<< HEAD
 # Define a route to render the registration form
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -276,6 +277,8 @@ def register():
         return redirect(url_for('home'))
     
     return render_template('registration.html')
+=======
+>>>>>>> 21fcf9ad35faebaef852fc1d758aab26d5c5122e
 
 if __name__ == "__main__":
     app.run(debug=True)
