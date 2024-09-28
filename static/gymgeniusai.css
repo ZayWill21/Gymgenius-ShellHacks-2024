@@ -1,109 +1,66 @@
+/* Styles for the body */
 body {
-    background-color: #001f3f; /* Dark navy blue */
-    color: #ffffff; /* White text for contrast */
+    background-color: #ffffff; /* Dark navy blue */
+    color: #000000; /* White text for contrast */
     font-family: Arial, sans-serif;
     margin: 0;
-    height: 100vh; /* Full height of the viewport */
     display: flex;
     flex-direction: column;
-    align-items: center;
+    justify-content: space-between; /* Space between elements */
+    align-items: center; /* Center content */
+    height: 100vh; /* Full height of the viewport */
 }
 
-/* Styling for the heading (h1) */
 h1 {
-    font-size: 5rem;        /* Large font size */
-    opacity: 0.8;           /* Less opaque (80% visibility) */
-    color: #ffffff;         /* White text */
-    position: absolute;     /* Use absolute positioning */
-    top: 25%;               /* Position 75% from the top of the viewport */
-    transform: translateY(-50%); /* Center the heading vertically */
-    text-align: center;     /* Center the text */
-    margin: 0; 
-}
-/* Sidebar styles */
-.sidebar {
-    width: 200px;
-    height: 100%;
-    background-color: #004080; /* Darker shade for the sidebar */
-    color: white;
-    position: fixed;
-    top: 0;
-    left: -200px; /* Initially hidden */
-    transition: left 0.3s ease;
-    z-index: 1000; /* Ensure sidebar is on top */
+    font-size: 500%;
+    margin-top: 100px;
 }
 
-/* Positioning the navbar */
-.navbar {
+/* Adjust navbar-items to be centered and spaced evenly */
+.navbar-items {
+    display: flex; /* Horizontal layout for navbar items */
+    gap: 20px; /* Space between items */
+    margin: 0 auto; /* Center the navbar items */
+}
+
+/* Styles for the navigation bar links */
+.navbar-item {
+    color: white; /* Make the navbar links white */
+    text-decoration: none; /* Remove underline */
+}
+
+/* Optional: Add a hover effect for better UX */
+.navbar-item:hover {
+    text-decoration: underline; /* Underline on hover */
+}
+
+/* Styles for the chat container */
+.chat-container {
     display: flex;
-    align-items: center;
-    padding: 10px;
-    background-color: #001f3f; /* Matching your existing color */
+    flex-direction: column;
+    align-items: center; /* Center chat box */
+    margin-top: auto; /* Push chat box to bottom */
+    margin-bottom: 50px; /* Space from the bottom of the screen */
 }
 
-/* Menu icon styles */
-.menu-icon {
-    font-size: 30px;
-    cursor: pointer;
-    margin-right: 20px;
-}
-
-/* Sidebar item styles */
-.sidebar-item {
-    display: block;
-    padding: 15px;
-    text-decoration: none;
-    color: white;
-}
-
-.sidebar-item:hover {
-    background-color: #00509e; /* Change color on hover */
-}
-
-/* Add some padding to the content to avoid overlap with the sidebar */
-.content {
-    padding: 20px;
-    margin-left: 20px; /* Adjust according to your layout */
-}
-
-/* Optional: to give some space for the sidebar when expanded */
-.content {
-    margin-left: 20px;
-    transition: margin-left 0.3s ease; /* Smooth transition */
-}
-/* Existing CSS styles here... */
-/* Positioning the question box in the center */
-.question-background {
-    background-color: rgb(255, 255, 255); /* Semi-transparent black */
+/* Styles for the chat box */
+.chat-box {
+    display: flex;
+    flex-direction: column;
+    max-height: 400px; /* Limit height */
+    overflow-y: auto; /* Enable scrolling */
+    background-color: white; /* Start with a white background */
     border-radius: 15px; /* Rounded corners */
-    position: fixed; /* Keep it fixed */
-    top: 52%; /* Same top value as question box */
-    left: 50%; /* Center horizontally */
-    transform: translateX(-50%); /* Center using transform */
-    width: 30%; /* Slightly wider than the question box */
-    height: 10%;
-    padding: 20px; /* Padding for the background box */
-    z-index: 1; /* Behind the question box */
-}
-.question-box {
-    background-color: transparent; /* Make the background transparent */
-    color: white;
-    padding: 20px;
-    position: fixed; /* Keep fixed positioning */
-    top: 60%; /* Center vertically */
-    left: 80%; /* Center horizontally */
-    transform: translate(-50%, -50%); /* Center using transform */
-    width: 80%; /* Adjust width as needed */
-    text-align: left; /* Align text to the left */
-    border-radius: 10px; /* Rounded corners */
-    z-index: 2;
+    padding: 20px; /* Padding inside */
+    width: 80%; /* Center the chat box */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Optional shadow */
 }
 
-/* Styles for the message bubbles */
+/* Style for the message bubbles */
 .message {
     display: flex;
     align-items: center; /* Center items vertically */
-    margin-bottom: 15px; /* Space between messages */
+    margin-bottom: 10px; /* Space between messages */
 }
 
 .icon {
@@ -111,7 +68,6 @@ h1 {
     margin-right: 10px; /* Space between icon and bubble */
 }
 
-/* Message bubble styles */
 .bubble {
     background-color: #00509e; /* Color of the message bubble */
     color: white;
@@ -130,4 +86,155 @@ h1 {
     border-width: 10px;
     border-style: solid;
     border-color: transparent transparent #00509e transparent; /* Triangle pointing down */
+}
+
+/* Styles for the input options */
+.options {
+    display: flex; /* Align input and button */
+    margin-top: 10px; /* Space between chat box and input */
+    width: 80%; /* Make the width of the input box match the chat box */
+}
+
+/* Input field styling */
+#userInput {
+    flex: 1; /* Take available space */
+    padding: 10px; /* Padding for input */
+    border: 1px solid #ccc; /* Border style */
+    border-radius: 5px; /* Rounded corners */
+    width: 100%; /* Full width of the container */
+}
+
+/* Button styling */
+#submitBtn {
+    padding: 10px 15px; /* Padding for button */
+    border: none; /* No border */
+    background-color: #00509e; /* Button color */
+    color: white; /* Text color */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor */
+}
+
+/* Button hover effect */
+#submitBtn:hover {
+    background-color: #003f7f; /* Darker on hover */
+}
+
+/* Styles for messages */
+.message {
+    display: flex;
+    align-items: center; /* Center items vertically */
+    margin-bottom: 10px; /* Space between messages */
+}
+
+.ai-message {
+    justify-content: flex-start; /* Align user messages to the left */
+}
+
+.user-message {
+    justify-content: flex-end; /* Align AI messages to the right */
+}
+
+/* Styles for the message bubbles */
+.bubble {
+    background-color: #00509e; /* Color of the AI message bubble */
+    color: white; /* AI message text color */
+    padding: 10px 15px; /* Padding inside the bubble */
+    border-radius: 20px; /* Rounded corners for the bubble */
+    max-width: 70%; /* Limit the width of the bubble */
+    position: relative; /* For the arrow effect */
+}
+
+.user-bubble {
+    background-color: #e0e0e0; /* Color of the user message bubble */
+    color: black; /* User message text color */
+}
+
+/* Optional: Add a tail effect for the AI message bubble */
+.bubble::after {
+    content: '';
+    position: absolute;
+    bottom: 100%; /* Position above the bubble */
+    left: 20px; /* Adjust to align with the bubble */
+    border-width: 10px;
+    border-style: solid;
+    border-color: transparent transparent #00509e transparent; /* Triangle pointing down */
+}
+
+/* Optional: Add a tail effect for the user message bubble */
+.user-bubble::after {
+    content: '';
+    position: absolute;
+    bottom: 100%; /* Position above the bubble */
+    right: 20px; /* Adjust to align with the bubble */
+    border-width: 10px;
+    border-style: solid;
+    border-color: transparent transparent #e0e0e0 transparent; /* Triangle pointing down */
+}
+
+/* Adjusted Styles for the navigation bar */
+.navbar {
+    background-color: #00509e; /* Navbar background color */
+    width: 100%; /* Full width */
+    display: flex; /* Flex layout */
+    justify-content: space-between; /* Space between the hamburger icon and logout button */
+    align-items: center; /* Center items vertically */
+    padding: 10px 20px; /* Padding inside the navbar */
+    position: fixed; /* Fixed positioning to stay at the top */
+    top: 0; /* Align to the top */
+    left: 0; /* Align to the left */
+    z-index: 1000; /* Ensure it stays on top of other elements */
+}
+
+/* Styles for the menu icon (hamburger icon) on the top-left */
+.menu-icon {
+    font-size: 2.5rem; /* Increase the size */
+    color: white; /* Make the hamburger icon white */
+    cursor: pointer; /* Pointer cursor on hover */
+    position: relative; /* Remove absolute positioning to keep it in flow */
+    margin-left: 10px; /* Add some space from the left edge */
+}
+
+/* Optional: Add hover effect */
+.menu-icon:hover {
+    color: #f0f0f0; /* Slightly lighter white on hover */
+}
+
+/* Styles for the logout button on the top-right */
+.logout-btn {
+    background-color: #d9534f; /* Bootstrap danger color */
+    color: white; /* Text color */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 5px 10px; /* Small padding */
+    cursor: pointer; /* Pointer cursor */
+    font-size: 0.9rem; /* Slightly smaller font */
+    position: relative; /* Remove absolute positioning */
+    margin-right: 30px; /* Space from the right */
+    transition: background-color 0.3s; /* Smooth transition */
+    z-index: 1001; /* Ensure it stays on top of navbar */
+}
+
+/* Logout button hover effect */
+.logout-btn:hover {
+    background-color: #c9302c; /* Darker red on hover */
+}
+
+/* Background logo (large) */
+.background-logo {
+    position: absolute; /* Absolute positioning to place it behind the chat box */
+    top: 50%; /* Move it to the center of the viewport */
+    left: 50%; /* Move it to the center of the viewport */
+    transform: translate(-50%, -50%); /* Center it by offsetting 50% of its own size */
+    opacity: 0.3; /* Make it very transparent so it doesn't distract */
+    z-index: 0; /* Ensure it is behind the chat box */
+    width: 1000px; /* Large width (80% of the viewport width) */
+    max-width: 1000px; /* Limit the maximum width to 800px for larger screens */
+    height: auto; /* Maintain aspect ratio based on width */
+    pointer-events: none; /* Prevent it from blocking interaction with other elements */
+}
+
+/* Ensure the chat box is on top */
+.chat-container {
+    position: relative; /* Ensure chat box is on top of the logo */
+    z-index: 1; /* Higher z-index than the logo */
 }
