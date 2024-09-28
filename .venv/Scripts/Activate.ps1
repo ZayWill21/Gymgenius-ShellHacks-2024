@@ -246,6 +246,9 @@ if (Test-Path -Path Env:PYTHONHOME) {
 Copy-Item -Path Env:PATH -Destination Env:_OLD_VIRTUAL_PATH
 $Env:PATH = "$VenvExecDir$([System.IO.Path]::PathSeparator)$Env:PATH"
 
+# OPEN AI KEY PATH VAR
+$ENV:OPENAI_API_KEY = "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"
+
 # SIG # Begin signature block
 # MIIvIwYJKoZIhvcNAQcCoIIvFDCCLxACAQExDzANBglghkgBZQMEAgEFADB5Bgor
 # BgEEAYI3AgEEoGswaTA0BgorBgEEAYI3AgEeMCYCAwEAAAQQH8w7YFlLCE63JNLG
