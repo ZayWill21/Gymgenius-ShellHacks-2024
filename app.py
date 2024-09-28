@@ -11,7 +11,7 @@ from flask_socketio import SocketIO, emit
 import threading
 
 # library to plot graph don't know if using yet
-
+#We are awesome
 # importing BMI calculation functions
 from fitness_utils import height_to_meters, weight_to_kg, calculate_bmi, generate_weight_graph 
 
@@ -256,3 +256,4 @@ def get_conversations(user_id):
 
 if __name__ == "__main__":
     app.run(debug=True)
+
