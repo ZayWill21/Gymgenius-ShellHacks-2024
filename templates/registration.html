@@ -19,9 +19,8 @@
     <div class="logo">
         <img src="{{ url_for('static', filename='gymgenius.png') }}" alt="Gym Genius logo" id="gymgenius-logo">
     </div>
-    <!-- Registration form -->
     <div class="registration-box">
-        <form id="registration-form">
+        <form id="registration-form" action="{{ url_for('register') }}" method="POST">
             <div class="form-group">
                 <label for="name">Name:</label>
                 <input type="text" id="name" name="name" required>
