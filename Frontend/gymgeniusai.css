@@ -74,13 +74,14 @@ h1 {
 /* Existing CSS styles here... */
 /* Positioning the question box in the center */
 .question-background {
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+    background-color: rgb(255, 255, 255); /* Semi-transparent black */
     border-radius: 15px; /* Rounded corners */
     position: fixed; /* Keep it fixed */
-    top: 30%; /* Same top value as question box */
+    top: 52%; /* Same top value as question box */
     left: 50%; /* Center horizontally */
     transform: translateX(-50%); /* Center using transform */
-    width: 85%; /* Slightly wider than the question box */
+    width: 30%; /* Slightly wider than the question box */
+    height: 10%;
     padding: 20px; /* Padding for the background box */
     z-index: 1; /* Behind the question box */
 }
@@ -95,6 +96,7 @@ h1 {
     width: 80%; /* Adjust width as needed */
     text-align: left; /* Align text to the left */
     border-radius: 10px; /* Rounded corners */
+    z-index: 2;
 }
 
 /* Styles for the message bubbles */
