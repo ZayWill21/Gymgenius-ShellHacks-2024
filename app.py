@@ -225,7 +225,7 @@ def add_conversation():
     user_id = data.get('user_id') #Expecting the User_id in the request data
 
     # Find the user associated with the provided user_id
-    user = User.query.get(user_id)
+    user = User.query.filter_by(user_id).first()
 
     if not user:
         return jsonify({'error':'User not found'}), 404 
@@ -276,29 +276,6 @@ def register():
         return redirect(url_for('home'))
     
     return render_template('registration.html')
-
-#Collect input from Login page
-@app.route('/login', methods=['POST'])
-def login():
-    if request.method == 'POST':
-        email = request.form['email']
-        password = request.form['password']
-
-        #Search for email in DB
-        login_email = User.query.get(email)
-        if not login_email:
-            return jsonify({'error': 'Email Not Found'}), 404
-        
-        #Search for password in DB
-        login_password = User.query.get(password)
-        if not login_password:
-            return jsonify({'error': 'Password Incorrect'}), 404
-        
-        #Redirect to home page of website
-        return render_template('gymgeniusai.html')
-    else:  
-        return jsonify({'error': 'User not found'}), 404
-
 
 if __name__ == "__main__":
     app.run(debug=True)
