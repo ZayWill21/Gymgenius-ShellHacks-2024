@@ -33,13 +33,15 @@
     </div>
 
     <script>
+        // Add event listener to the submit button
         document.getElementById('submitBtn').addEventListener('click', function() {
             const userInput = document.getElementById('userInput').value;
             if (!userInput) return; // Don't send empty messages
 
-            // Append user's message to chat box
+            // Append user's message to the chat box
             addMessage('You', userInput);
 
+            // Send user input to the server via the '/converse' route
             fetch('/converse', {
                 method: 'POST',
                 headers: {
@@ -49,28 +51,34 @@
             })
             .then(response => response.json())
             .then(data => {
-                addMessage('AI', data.answer); // Append AI's response
+                // Log the AI's response and display it in the chat
+                console.log(data.answer);
+                addMessage('AI', data.answer); // Add AI's response to the chat box
             })
             .catch(error => console.error('Error:', error));
+
+            // Clear the input field after sending
+            document.getElementById('userInput').value = '';
         });
 
+        // Function to add messages to the chat box
         function addMessage(sender, text) {
-    const chatBox = document.getElementById('chat-box');
-    const messageDiv = document.createElement('div');
-    messageDiv.className = 'message';
+            const chatBox = document.getElementById('chat-box');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message';
 
-    if (sender === 'You') {
-        messageDiv.classList.add('user-message');
-        messageDiv.innerHTML = `<div class="bubble user-bubble">${text}</div>`;
-    } else {
-        messageDiv.classList.add('ai-message');
-        messageDiv.innerHTML = `<div class="icon">🤖</div><div class="bubble">${text}</div>`;
-    }
-    
-    chatBox.appendChild(messageDiv);
-    chatBox.scrollTop = chatBox.scrollHeight; // Scroll to the bottom
-}
-
+            if (sender === 'You') {
+                messageDiv.classList.add('user-message');
+                messageDiv.innerHTML = `<div class="bubble user-bubble">${text}</div>`;
+            } else {
+                messageDiv.classList.add('ai-message');
+                messageDiv.innerHTML = `<div class="icon">🤖</div><div class="bubble">${text}</div>`;
+            }
+            
+            chatBox.appendChild(messageDiv);
+            chatBox.scrollTop = chatBox.scrollHeight; // Scroll to the bottom
+        }
     </script>
+
 </body>
 </html>
