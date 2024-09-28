@@ -156,7 +156,7 @@ def login():
     return render_template('login.html')
 
 # Define a route for logout
-@app.route('/logout')
+@app.route('/logout', methods=['GET', 'POST'])
 def logout():
     logout_user()
     flash('You have been logged out.', 'info')

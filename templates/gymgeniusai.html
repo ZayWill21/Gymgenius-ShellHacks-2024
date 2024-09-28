@@ -85,11 +85,11 @@
             document.cookie = "session=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
             
             // Step 2: Inform the backend and redirect the user to the login or home page after logout
-            fetch('/logout', {
+            fetch('{{url_for("logout")}}', {
                 method: 'POST'
             })
             .then(() => {
-                window.location.href = '/login';  // Redirect after logout
+                window.location.href = "{{url_for('login')}}";  // Redirect after logout
             })
             .catch(error => console.error('Logout failed:', error));
         });
