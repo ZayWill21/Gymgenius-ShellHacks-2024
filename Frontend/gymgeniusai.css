@@ -72,37 +72,49 @@ h1 {
     transition: margin-left 0.3s ease; /* Smooth transition */
 }
 /* Existing CSS styles here... */
-
-/* Question box styles */
+/* Positioning the question box in the center */
 .question-box {
-    background-color: #003366; /* Dark blue background */
+    background-color: transparent; /* Make the background transparent */
     color: white;
     padding: 20px;
-    position: fixed; /* Fixed positioning */
-    bottom: 0; /* Position at the bottom */
-    left: 0; /* Align to the left */
-    width: 100%; /* Full width */
-    text-align: center; /* Center text */
+    position: fixed; /* Keep fixed positioning */
+    top: 60%; /* Center vertically */
+    left: 80%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Center using transform */
+    width: 80%; /* Adjust width as needed */
+    text-align: left; /* Align text to the left */
+    border-radius: 10px; /* Rounded corners */
 }
 
-/* Option button styles */
-.options {
+/* Styles for the message bubbles */
+.message {
     display: flex;
-    justify-content: center; /* Center the buttons */
-    margin-top: 10px;
+    align-items: center; /* Center items vertically */
+    margin-bottom: 15px; /* Space between messages */
 }
 
-.option {
-    background-color: #00509e; /* Button background color */
-    color: white; /* Button text color */
-    border: none; /* No border */
-    border-radius: 5px; /* Rounded corners */
-    padding: 10px 15px; /* Padding for the buttons */
-    margin: 0 5px; /* Spacing between buttons */
-    cursor: pointer; /* Pointer on hover */
-    transition: background-color 0.3s ease; /* Smooth transition */
+.icon {
+    font-size: 2rem; /* Size of the person icon */
+    margin-right: 10px; /* Space between icon and bubble */
 }
 
-.option:hover {
-    background-color: #0073e6; /* Lighter blue on hover */
+/* Message bubble styles */
+.bubble {
+    background-color: #00509e; /* Color of the message bubble */
+    color: white;
+    padding: 10px 15px; /* Padding inside the bubble */
+    border-radius: 20px; /* Rounded corners for the bubble */
+    max-width: 70%; /* Limit the width of the bubble */
+    position: relative; /* For the arrow effect */
+}
+
+/* Optional: Add a tail effect for the message bubble */
+.bubble::after {
+    content: '';
+    position: absolute;
+    bottom: 100%; /* Position above the bubble */
+    left: 20px; /* Adjust to align with the bubble */
+    border-width: 10px;
+    border-style: solid;
+    border-color: transparent transparent #00509e transparent; /* Triangle pointing down */
 }
