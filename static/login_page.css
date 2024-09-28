@@ -22,14 +22,16 @@ h1 {
 
 /* Styling the logo */
 .logo {
-    position: absolute;
-    top: 0%;
+    position: center;
+    display: flex;
+    height: 30px;
+    top: 10px;
     left: 0%;
 }
 
 .logo img {
-    height: 350px;
-    width: auto;
+    height: 300px;
+    width: 300px;
 }
 
 /* Login box styles */
@@ -38,10 +40,11 @@ h1 {
     padding: 30px;
     border-radius: 15px;
     position: absolute;
-    top: 60%;
+    top: 65%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 40%;
+    width: 30%;
+    height: 40%;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 }
 
@@ -53,18 +56,19 @@ h1 {
 /* Input field styles */
 input[type="email"],
 input[type="password"] {
-    width: 100%;
+    width: 96%;
     padding: 10px;
     border-radius: 5px;
     border: none;
     font-size: 1rem;
     background-color: white;
     color: black;
+    position: relative;
 }
 
 /* Label styles */
 label {
-    display: block;
+    display: flex;
     margin-bottom: 5px;
     font-size: 1.2rem;
 }

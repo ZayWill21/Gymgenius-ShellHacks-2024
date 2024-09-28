@@ -249,6 +249,36 @@ def get_conversations(user_id):
     conversations_list = [{"id": conv.id, "conversation": conv.conversation} for conv in conversations]
     return jsonify(conversations_list), 200
 
+<<<<<<< HEAD
+# Define a route to render the registration form
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    if request.method == 'POST':
+        name = request.form['name']
+        age = request.form['age']
+        height = request.form['height']
+        weight = request.form['weight']
+        gender = request.form['gender']
+        email = request.form['email']
+        password = request.form['password']
+        
+        new_user = User(
+            name=name,
+            age=age,
+            height=height,
+            weight=weight,
+            gender=gender,
+            email=email,
+            password=password
+        )
+        db.session.add(new_user)
+        db.session.commit()
+        flash('Registration successful!', 'success')
+        return redirect(url_for('home'))
+    
+    return render_template('registration.html')
+=======
+>>>>>>> 6ae65cfd5b8fdf7c8f014884348cfe1b6a5aaae0
 
 if __name__ == "__main__":
     app.run(debug=True)
