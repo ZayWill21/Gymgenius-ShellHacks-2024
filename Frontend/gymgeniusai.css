@@ -73,6 +73,17 @@ h1 {
 }
 /* Existing CSS styles here... */
 /* Positioning the question box in the center */
+.question-background {
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+    border-radius: 15px; /* Rounded corners */
+    position: fixed; /* Keep it fixed */
+    top: 30%; /* Same top value as question box */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Center using transform */
+    width: 85%; /* Slightly wider than the question box */
+    padding: 20px; /* Padding for the background box */
+    z-index: 1; /* Behind the question box */
+}
 .question-box {
     background-color: transparent; /* Make the background transparent */
     color: white;
