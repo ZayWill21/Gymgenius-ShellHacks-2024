@@ -1,0 +1,85 @@
+body {
+    background-color: #001f3f;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Styling for the heading */
+h1 {
+    font-size: 4rem;
+    color: #ffffff;
+    position: absolute;
+    top: 10%;
+    text-align: center;
+    margin: 0;
+}
+
+/* Registration box styles */
+.registration-box {
+    background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent */
+    padding: 30px;
+    border-radius: 15px;
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Form group styles */
+.form-group {
+    margin-bottom: 20px;
+}
+
+/* Input and select field styles */
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="password"],
+select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    font-size: 1rem;
+    background-color: white;
+    color: black;
+}
+
+/* Label styles */
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 1.2rem;
+}
+
+/* Submit button styles */
+.submit-btn {
+    background-color: #00509e;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    width: 100%;
+}
+
+.submit-btn:hover {
+    background-color: #0073e6;
+}
+
+/* Sidebar, navbar, and other existing CSS from the provided template remain the same */
+
+/* Optional: Add media query for responsive design */
+@media (max-width: 768px) {
+    .registration-box {
+        width: 80%;
+    }
+}
