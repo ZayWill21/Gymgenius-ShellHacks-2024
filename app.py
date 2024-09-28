@@ -257,9 +257,6 @@ def register():
     
     return render_template('registration.html')
 
-# Logic to link the conversation database ID to User ID
-
-
 #Collect input from Login page
 @app.route('/login', methods=['POST'])
 def login():
@@ -267,6 +264,18 @@ def login():
         email = request.form['email']
         password = request.form['password']
 
+        #Search for email in DB
+        login_email = User.query.get(email)
+        if not login_email:
+            return jsonify({'error': 'Email Not Found'}), 404
+        
+        #Search for password in DB
+        login_password = User.query.get(password)
+        if not login_password:
+            return jsonify({'error': 'Password Incorrect'}), 404
+        
+        #Redirect to home page of website
+        return render_template('gymgeniusai.html')
     else:  
         return jsonify({'error': 'User not found'}), 404
 
