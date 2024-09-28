@@ -224,7 +224,7 @@ h1 {
     top: 50%; /* Move it to the center of the viewport */
     left: 50%; /* Move it to the center of the viewport */
     transform: translate(-50%, -50%); /* Center it by offsetting 50% of its own size */
-    opacity: 0.3; /* Make it very transparent so it doesn't distract */
+    opacity: 0.7; /* Make it very transparent so it doesn't distract */
     z-index: 0; /* Ensure it is behind the chat box */
     width: 1200px; /* Increase width for larger logo */
     max-width: 1200px; /* Adjust max width */
