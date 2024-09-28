@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='gymgeniusai.css') }}">
 </head>
 <body>
+    <!-- Logo Image (before the chat container) -->
+    <img src="{{ url_for('static', filename='gymgenius.png') }}" class="background-logo" alt="GymGenius Logo">
     <div class="navbar">
         <div class="menu-icon" id="menu-icon">&#9776;</div>
         <div class="navbar-items">
@@ -15,6 +17,7 @@
             <a href="#services" class="navbar-item">Services</a>
             <a href="#contact" class="navbar-item">Contact</a>
         </div>
+        <button class="logout-btn" id="logoutBtn">Logout</button> <!-- Logout button -->
     </div>
 
     <h1>GymGenius</h1>
@@ -34,6 +37,7 @@
 
     <script>
         // Add event listener to the submit button
+        // Handle message submission
         document.getElementById('submitBtn').addEventListener('click', function() {
             const userInput = document.getElementById('userInput').value;
             if (!userInput) return; // Don't send empty messages

@@ -10,6 +10,11 @@ from flask_socketio import SocketIO, emit
 
 import threading
 
+# library to plot graph don't know if using yet
+
+# importing BMI calculation functions
+from fitness_utils import height_to_meters, weight_to_kg, calculate_bmi, generate_weight_graph 
+
 app = Flask(__name__)
 
 # Set up the SQLite database URI and disable track modifications
@@ -32,6 +37,7 @@ class User(UserMixin, db.Model):
     age = db.Column(db.Integer, nullable=False)
     height = db.Column(db.String(5), nullable=False)
     weight = db.Column(db.Float, nullable=False)
+    bmi = db.Column(db.Float, nullable=True)
     gender = db.Column(db.String(10), nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(200), nullable=False)
@@ -68,6 +74,26 @@ def register():
         gender = request.form['gender']
         email = request.form['email']
         password = request.form['password']
+
+        # Split height into feet and inches
+        try:
+            height_parts = height.split("'")
+            feet = int(height_parts[0])
+            inches = int(height_parts[1].replace('"', ''))
+        except (IndexError, ValueError):
+            flash("Invalid height format. Please select from the dropdown.", 'danger')
+            return redirect(url_for('register'))
+        
+
+        weight = float(weight)
+
+        try:
+            bmi = calculate_bmi(weight, feet, inches)
+        except ValueError as e:
+            flash(str(e), 'danger')
+            return redirect(url_for('register'))
+
+
 
         # Check if the email already exists
         existing_user = User.query.filter_by(email=email).first()
@@ -165,6 +191,7 @@ def add_user():
         age=data['age'],
         height=data['height'],
         weight=data['weight'],
+        bmi = data['bmi'],
         gender=data['gender'],
         email=data['email'],
         password=data['password']
