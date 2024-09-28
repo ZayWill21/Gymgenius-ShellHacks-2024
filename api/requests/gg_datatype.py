@@ -15,3 +15,12 @@ class gg_Datatype(Enum):
             return Presets.get_text_example()
         elif inp == gg_Datatype.table:
             return Presets.get_table_example()
+
+    @staticmethod
+    def to_string(inp):
+        if inp == gg_Datatype.conversation:
+            return "conversation"
+        elif inp == gg_Datatype.text:
+            return "text"
+        elif inp == gg_Datatype.table:
+            return "table"
