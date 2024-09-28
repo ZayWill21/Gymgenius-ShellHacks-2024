@@ -48,7 +48,7 @@ def home():
 def register():
     if current_user.is_authenticated:
         flash('You are already logged in. No need to register again.', 'info')
-        return redirect(url_for('/'))  # Redirect to the personalize page or wherever you want
+        return redirect(url_for('personalize'))  # Redirect to the personalize page or wherever you want
 
     if request.method == 'POST':
         name = request.form['name']
@@ -91,7 +91,7 @@ def register():
 def login():
     if current_user.is_authenticated:
         flash('You are already logged in. No need to login again.', 'info')
-        return redirect(url_for('/'))  # Redirect to the personalize page or wherever you want
+        return redirect(url_for('home'))  # Redirect to the personalize page or wherever you want
 
     if request.method == 'POST':
         email = request.form['email']
