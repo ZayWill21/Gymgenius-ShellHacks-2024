@@ -1,21 +1,22 @@
 html, body {
+    background-color: #001f3f; /* Dark navy blue */
+    color: #ffffff;
     height: 100%;
     margin: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #f0f0f0;
 }
 
-.center-title {
+h1{
     font-size: 3rem;
-    font-family: 'Arial', sans-serif;
+    font-family: 'Helvetica', Arial, Helvetica, sans-serif;
     text-align: center;
-    color: #333;
+    color: #fff9f9;
     text-transform: uppercase;
     letter-spacing: 2px;
     padding: 10px;
-    background-color: #fff;
+    background-color: #554d4d;
     border: 2px solid #ddd;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
