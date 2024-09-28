@@ -20,8 +20,6 @@
         <button class="logout-btn" id="logoutBtn">Logout</button> <!-- Logout button -->
     </div>
 
-    <h1>GymGenius</h1>
-    
     <div class="chat-container">
         <div class="chat-box" id="chat-box">
             <div class="message">
@@ -36,16 +34,15 @@
     </div>
 
     <script>
-        // Add event listener to the submit button
         // Handle message submission
         document.getElementById('submitBtn').addEventListener('click', function() {
             const userInput = document.getElementById('userInput').value;
             if (!userInput) return; // Don't send empty messages
 
-            // Append user's message to the chat box
+            // Append user's message to chat box
             addMessage('You', userInput);
 
-            // Send user input to the server via the '/converse' route
+            // Send user's message to backend
             fetch('/converse', {
                 method: 'POST',
                 headers: {
@@ -55,14 +52,9 @@
             })
             .then(response => response.json())
             .then(data => {
-                // Log the AI's response and display it in the chat
-                console.log(data.answer);
-                addMessage('AI', data.answer); // Add AI's response to the chat box
+                addMessage('AI', data.answer); // Append AI's response
             })
             .catch(error => console.error('Error:', error));
-
-            // Clear the input field after sending
-            document.getElementById('userInput').value = '';
         });
 
         // Function to add messages to the chat box
@@ -82,7 +74,25 @@
             chatBox.appendChild(messageDiv);
             chatBox.scrollTop = chatBox.scrollHeight; // Scroll to the bottom
         }
-    </script>
 
+        // Function to handle logout
+        document.getElementById('logoutBtn').addEventListener('click', function() {
+            // Step 1: Clear any session data (localStorage, sessionStorage, cookies)
+            localStorage.clear();  // Clear all localStorage data
+            sessionStorage.clear(); // Clear all sessionStorage data
+
+            // Clear cookies (if you're using cookies for sessions)
+            document.cookie = "session=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            
+            // Step 2: Inform the backend and redirect the user to the login or home page after logout
+            fetch('/logout', {
+                method: 'POST'
+            })
+            .then(() => {
+                window.location.href = '/login';  // Redirect after logout
+            })
+            .catch(error => console.error('Logout failed:', error));
+        });
+    </script>
 </body>
 </html>

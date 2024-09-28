@@ -218,7 +218,6 @@ h1 {
 .logout-btn:hover {
     background-color: #c9302c; /* Darker red on hover */
 }
-
 /* Background logo (large) */
 .background-logo {
     position: absolute; /* Absolute positioning to place it behind the chat box */
@@ -227,8 +226,8 @@ h1 {
     transform: translate(-50%, -50%); /* Center it by offsetting 50% of its own size */
     opacity: 0.3; /* Make it very transparent so it doesn't distract */
     z-index: 0; /* Ensure it is behind the chat box */
-    width: 1000px; /* Large width (80% of the viewport width) */
-    max-width: 1000px; /* Limit the maximum width to 800px for larger screens */
+    width: 1200px; /* Increase width for larger logo */
+    max-width: 1200px; /* Adjust max width */
     height: auto; /* Maintain aspect ratio based on width */
     pointer-events: none; /* Prevent it from blocking interaction with other elements */
 }
