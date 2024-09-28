@@ -2,6 +2,13 @@ from flask import Flask, request, render_template, redirect, url_for, flash, jso
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required, current_user
+from api.api import API
+from api.requests.gg_request import gg_Request, gg_Datatype
+from api.requests.gg_programmer import Programmer
+from api.requests.gg_personalizer import Personalizer
+from flask_socketio import SocketIO, emit
+
+import threading
 
 # library to plot graph don't know if using yet
 
@@ -14,8 +21,10 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///fitness_tracker.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = 'your_secret_key'  # Needed for flash messages
+socketio = SocketIO(app, async_mode='threading')
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
+openai_api = API()
 
 # Set up Flask-Login
 login_manager = LoginManager(app)
@@ -53,6 +62,7 @@ def load_user(user_id):
 # Initialize the database
 with app.app_context():
     db.create_all()
+
 
 # Define a route to handle the root URL
 @app.route('/')
@@ -162,16 +172,26 @@ def personalize():
 @login_required
 def process_input():
     data = request.get_json()
+    
     user_question = data.get('question', '').strip()  # Strip whitespace
 
     if not user_question:  # Check for empty input
         return jsonify({'answer': 'Please enter a question.'}), 400
 
-    # Here, you can process the question. For demonstration, let's return a simple response.
-    response_answer = f"You asked: {user_question}."  # Replace with your processing logic
+    try:
+        # Initialize Personalizer instance for the AI request
+        gg_personalizer = Personalizer(user_question, gg_Datatype.conversation, openai_api)
 
-    return jsonify({'answer': response_answer}), 200
+        # Make the AI request synchronously (wait for response)
+        ai_response = gg_personalizer.make_request("Gain muscle, lose weight, get stronger, defend yourself")
+        print(ai_response)
+        # Return the AI response to the user
+        return jsonify({'answer': ai_response}), 200
 
+    except Exception as e:
+        # Handle any potential exceptions
+        return jsonify({'answer': f"An error occurred: {str(e)}"}), 500
+    
 # Define a route to add user data (API)
 @app.route('/add_user', methods=['POST'])
 def add_user():
