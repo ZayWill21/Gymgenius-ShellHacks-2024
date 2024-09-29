@@ -167,7 +167,8 @@ from io import BytesIO
 @app.route('/download/<filename>')
 def download(filename):
     try:
-        with open("schedules/"+filename, 'rb') as file:
+        with open('schedules/'+filename, 'rb') as file:
+            print(file.name)
             file_data = file.read()
         return send_file(BytesIO(file_data), download_name=filename, as_attachment=True)
     except Exception as e:
@@ -214,8 +215,6 @@ def process_input():
             # Generate the workout routine from AI
             # Save the conversation to the database
             workout_schedule = programmer.make_request(conversations_json, current_user.id)
-            download_link = url_for('download', filename=programmer.file.name)
-
             new_conversation = Conversation(
                 user_question=user_question,
                 ai_response='Sorry, this download link is now inactive.',
@@ -223,8 +222,9 @@ def process_input():
             )
             db.session.add(new_conversation)
             db.session.commit()
+            filename = os.path.basename(programmer.file.name)
             
-            return jsonify({'answer': f'Your workout schedule is ready. Download it <a href="{download_link}">here</a>.'}), 200
+            return jsonify({'answer': f'Your workout schedule is ready. Download it <a href="{url_for('download', filename=filename)}">here</a>.'}), 200
         
         
         except Exception as e:
