@@ -7,6 +7,8 @@ from api.requests.gg_request import gg_Request, gg_Datatype
 from api.requests.gg_programmer import Programmer
 from api.requests.gg_personalizer import Personalizer
 from flask_socketio import SocketIO, emit
+from flask import send_file
+import os
 
 import threading
 
@@ -173,6 +175,27 @@ def personalize():
     conversations = Conversation.query.filter_by(user_id=current_user.id).all()
     return render_template('gymgeniusai.html', conversations=conversations)
 
+from io import BytesIO
+@app.route('/download/<filename>')
+def download(filename):
+    try:
+        with open('schedules/'+filename, 'rb') as file:
+            print(file.name)
+            file_data = file.read()
+        return send_file(BytesIO(file_data), download_name=filename, as_attachment=True)
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+import json
+@app.route('/clear', methods=['POST'])
+def clear():
+    print("CALLED")
+    if current_user.id is not None:
+        success = Conversation.query.filter_by(user_id=current_user.id).delete()
+        db.session.commit()
+        if success:
+            flash('Conversation history cleared.', 'info')
+            return redirect(url_for('personalize'))
+        
 @app.route('/converse', methods=['POST'])
 @login_required
 def process_input():
@@ -182,29 +205,65 @@ def process_input():
 
     if not user_question:  # Check for empty input
         return jsonify({'answer': 'Please enter a question.'}), 400
+    conversations = Conversation.query.filter_by(user_id=current_user.id).all()
 
-    try:
-        # Initialize Personalizer instance for the AI request
-        gg_personalizer = Personalizer(user_question, gg_Datatype.conversation, openai_api)
 
-        # Make the AI request synchronously (wait for response)
-        ai_response = gg_personalizer.make_request("Gain muscle, lose weight, get stronger, defend yourself")
+        # Manually creating a list of dictionaries
+    conversations_list = []
+    for conversation in conversations:
+        conversations_list.append({
+            'id': conversation.id,
+            'user_question': conversation.user_question,
+            'ai_response': conversation.ai_response,
+            'user_id': conversation.user_id
+        })
 
-        # Save the conversation to the database
-        new_conversation = Conversation(
-            user_question=user_question,
-            ai_response=ai_response,
-            user_id=current_user.id  # Use the current user's ID
-        )
-        db.session.add(new_conversation)
-        db.session.commit()
+    # Convert the list of dictionaries to a JSON string
+    conversations_json = json.dumps(conversations_list)
+
+    if "program" in user_question or "calendar" in user_question:
+        try:
+            programmer = Programmer(user_question, gg_Datatype.table, openai_api)
+            # Generate the workout routine from AI
+            # Save the conversation to the database
+            workout_schedule = programmer.make_request(conversations_json, current_user.id)
+            new_conversation = Conversation(
+                user_question=user_question,
+                ai_response='Sorry, this download link is now inactive.',
+                user_id=current_user.id
+            )
+            db.session.add(new_conversation)
+            db.session.commit()
+            filename = os.path.basename(programmer.file.name)
+            
+            return jsonify({'answer': f'Your workout schedule is ready. Download it <a href="{url_for('download', filename=filename)}">here</a>.'}), 200
         
-        # Return the AI response to the user
-        return jsonify({'answer': ai_response}), 200
+        
+        except Exception as e:
+            print(f"Error in process_input: {e}")
+            return jsonify({'error': str(e)}), 500
 
-    except Exception as e:
-        # Handle any potential exceptions
-        return jsonify({'answer': f"An error occurred: {str(e)}"}), 500
+    else:
+        try:
+            # For non-workout questions, handle the AI's conversational response
+            gg_personalizer = Personalizer(user_question, gg_Datatype.conversation, openai_api)
+            ai_response = gg_personalizer.make_request(conversations_json)
+
+            # Save the conversation to the database
+            new_conversation = Conversation(
+                user_question=user_question,
+                ai_response=ai_response,
+                user_id=current_user.id  # Use the current user's ID
+            )
+            db.session.add(new_conversation)
+            db.session.commit()
+            
+            # Return the AI response to the user
+            return jsonify({'answer': ai_response}), 200
+
+        except Exception as e:
+            # Handle any potential exceptions
+            return jsonify({'answer': f"An error occurred: {str(e)}"}), 500
 
 # Define a route to add user data (API)
 @app.route('/add_user', methods=['POST'])

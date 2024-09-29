@@ -16,6 +16,7 @@
             <a href="{{url_for('progresstab')}}" class="navbar-item">Progress</a>
             <a href="{{url_for('aboutpage')}}" class="navbar-item">About</a>
             <a href="#contact" class="navbar-item">Contact</a>
+            <button id="clearBtn">Clear</button>
         </div>
         <button class="logout-btn" id="logoutBtn">Logout</button> <!-- Logout button -->
     </div>
@@ -53,6 +54,23 @@
     </div>
 
     <script>
+        const clearUrl = "{{ url_for('clear') }}"; // Replace 'clear_conversation' with your route function name
+
+document.getElementById('clearBtn').addEventListener('click', function() {
+    fetch(clearUrl, {
+        method: 'POST',
+        credentials: 'include' // Include cookies for authentication
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert("Conversation cleared successfully!");
+            // Optionally, refresh the conversation display
+        } else {
+            alert("Failed to clear conversation.");
+        }
+    });
+});
         // Handle message submission
         document.getElementById('submitBtn').addEventListener('click', function() {
             const userInput = document.getElementById('userInput').value;
