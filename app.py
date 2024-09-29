@@ -15,7 +15,11 @@ import threading
 # importing BMI calculation functions
 from fitness_utils import height_to_meters, weight_to_kg, calculate_bmi, generate_weight_graph 
 
+<<<<<<< HEAD
 app = Flask(__name__, template_folder='templates')
+=======
+app = Flask(__name__)
+>>>>>>> f16b2c9ea09a7c81e588d35828281c2a74603747
 
 # Set up the SQLite database URI and disable track modifications
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///fitness_tracker.db'
@@ -263,12 +267,15 @@ def get_conversations(user_id):
     conversations_list = [{"id": conv.id, "conversation": conv.conversation} for conv in conversations]
     return jsonify(conversations_list), 200
 
+<<<<<<< HEAD
 
 @app.route('/about')
 def Aboutpage():
     return render_template('about.html')
 
 
+=======
+>>>>>>> f16b2c9ea09a7c81e588d35828281c2a74603747
 if __name__ == "__main__":
     app.run(debug=True)
 
