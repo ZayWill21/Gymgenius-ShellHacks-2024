@@ -11,8 +11,76 @@ body {
     height: 100vh; /* Full height for the viewport */
 }
 
+
+.menu-icon {
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
+}
+
+/* Adjust navbar-items to be centered and spaced evenly */
+.navbar-items {
+    display: flex; /* Horizontal layout for navbar items */
+    gap: 20px; /* Space between items */
+    margin: 0 auto; /* Center the navbar items */
+}
+
+/* Styles for the navigation bar links */
+.navbar-item {
+    color: white; /* Make the navbar links white */
+    text-decoration: none; /* Remove underline */
+}
+
+/* Optional: Add a hover effect for better UX */
+.navbar-item:hover {
+    text-decoration: underline; /* Underline on hover */
+}
+/* Adjusted Styles for the navigation bar */
+.navbar {
+    background-color: #00509e; /* Navbar background color */
+    width: 100%; /* Full width */
+    display: flex; /* Flex layout */
+    justify-content: space-between; /* Space between the hamburger icon and logout button */
+    align-items: center; /* Center items vertically */
+    padding: 10px 20px; /* Padding inside the navbar */
+    position: fixed; /* Fixed positioning to stay at the top */
+    top: 0; /* Align to the top */
+    left: 0; /* Align to the left */
+    z-index: 1000; /* Ensure it stays on top of other elements */
+}
+
+.logout-btn {
+    background-color: #d9534f; /* Bootstrap danger color */
+    color: white; /* Text color */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 5px 10px; /* Small padding */
+    cursor: pointer; /* Pointer cursor */
+    font-size: 0.9rem; /* Slightly smaller font */
+    position: relative; /* Remove absolute positioning */
+    margin-right: 30px; /* Space from the right */
+    transition: background-color 0.3s; /* Smooth transition */
+    z-index: 1001; /* Ensure it stays on top of navbar */
+}
+
+/* Logout button hover effect */
+.logout-btn:hover {
+    background-color: #c9302c; /* Darker red on hover */
+}
+
+/* Logo */
+.background-logo {
+    position: absolute;
+    top: 50px;
+    left: 10px;
+    width: 200px;
+    height: auto;
+    z-index: 101;
+}
+
 /* Container for the progress section */
 .progress-container {
+    margin-top: 150px; /* Ensure content is below the navbar */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -21,6 +89,8 @@ body {
     padding: 40px;
     border-radius: 15px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 1200px;
 }
 
 /* Style for the page header */
