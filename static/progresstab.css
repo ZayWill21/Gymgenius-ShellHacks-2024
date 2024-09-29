@@ -11,6 +11,15 @@ body {
     height: 100vh; /* Full height for the viewport */
 }
 
+/* Style for the logo image */
+.background-logo {
+    width: 150px; /* Set desired width */
+    height: auto; /* Maintain aspect ratio */
+    position: absolute; /* Make sure it doesn't disrupt other elements */
+    top: 20px; /* Position from the top */
+    left: 20px; /* Position from the left */
+}
+
 /* Container for the progress section */
 .progress-container {
     display: flex;
@@ -29,12 +38,59 @@ h1 {
     margin-bottom: 20px;
 }
 
+/* Adjusted Styles for the navigation bar */
+.navbar {
+    background-color: #00509e; /* Navbar background color */
+    width: 100%; /* Full width */
+    display: flex; /* Flex layout */
+    justify-content: space-between; /* Space between the hamburger icon and logout button */
+    align-items: center; /* Center items vertically */
+    padding: 10px 20px; /* Padding inside the navbar */
+    position: fixed; /* Fixed positioning to stay at the top */
+    top: 0; /* Align to the top */
+    left: 0; /* Align to the left */
+    z-index: 1000; /* Ensure it stays on top of other elements */
+}
+
+/* Adjust navbar-items to be centered and spaced evenly */
+.navbar-items {
+    display: flex; /* Horizontal layout for navbar items */
+    gap: 20px; /* Space between items */
+    margin: 0 auto; /* Center the navbar items */
+}
+
+/* Styles for the navigation bar links */
+.navbar-item {
+    color: white; /* Make the navbar links white */
+    text-decoration: none; /* Remove underline */
+}
+
+/* Optional: Add a hover effect for better UX */
+.navbar-item:hover {
+    text-decoration: underline; /* Underline on hover */
+}
+
 /* Chart container to hold the line graph */
 .chart-container {
     width: 80vw; /* 80% of the viewport width */
     max-width: 800px; /* Maximum width for the chart */
     height: 400px; /* Fixed height for the chart */
     position: relative; /* Relative positioning */
+}
+
+/* Styles for the logout button on the top-right */
+.logout-btn {
+    background-color: #d9534f; /* Bootstrap danger color */
+    color: white; /* Text color */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 5px 10px; /* Small padding */
+    cursor: pointer; /* Pointer cursor */
+    font-size: 0.9rem; /* Slightly smaller font */
+    position: relative; /* Remove absolute positioning */
+    margin-right: 30px; /* Space from the right */
+    transition: background-color 0.3s; /* Smooth transition */
+    z-index: 1001; /* Ensure it stays on top of navbar */
 }
 
 /* Responsive design adjustments */

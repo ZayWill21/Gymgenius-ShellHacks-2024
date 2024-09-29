@@ -10,11 +10,10 @@
     <!-- Logo Image (before the chat container) -->
     <img src="{{ url_for('static', filename='gymgenius.png') }}" class="background-logo" alt="GymGenius Logo">
     <div class="navbar">
-        <div class="menu-icon" id="menu-icon">&#9776;</div>
         <div class="navbar-items">
             <a href="#home" class="navbar-item">Home</a>
             <a href="{{url_for('progresstab')}}" class="navbar-item">Progress</a>
-            <a href="{{url_for('Aboutpage')}}" class="navbar-item">About</a>
+            <a href="{{url_for('aboutpage')}}" class="navbar-item">About</a>
             <a href="#contact" class="navbar-item">Contact</a>
             <button id="clearBtn">Clear</button>
         </div>
