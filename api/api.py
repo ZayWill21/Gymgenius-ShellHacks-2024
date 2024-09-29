@@ -7,7 +7,6 @@ class API:
         self.rspn_handler = gg_Handler()
     
     def send_request(self, req_type, crafted_request):
-        print(crafted_request)
         response = self.client.chat.completions.create(
             model="gpt-4o-mini",
             messages=[

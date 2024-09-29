@@ -63,6 +63,24 @@
             document.getElementById('progressChart'),
             config
         );
+                // Function to handle logout
+                document.getElementById('logoutBtn').addEventListener('click', function() {
+            // Step 1: Clear any session data (localStorage, sessionStorage, cookies)
+            localStorage.clear();  // Clear all localStorage data
+            sessionStorage.clear(); // Clear all sessionStorage data
+
+            // Clear cookies (if you're using cookies for sessions)
+            document.cookie = "session=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            
+            // Step 2: Inform the backend and redirect the user to the login or home page after logout
+            fetch('{{url_for("logout")}}', {
+                method: 'POST'
+            })
+            .then(() => {
+                window.location.href = "{{url_for('login')}}";  // Redirect after logout
+            })
+            .catch(error => console.error('Logout failed:', error));
+        });
     </script>
 </body>
 </html>

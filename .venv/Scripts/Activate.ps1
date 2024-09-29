@@ -247,7 +247,7 @@ Copy-Item -Path Env:PATH -Destination Env:_OLD_VIRTUAL_PATH
 $Env:PATH = "$VenvExecDir$([System.IO.Path]::PathSeparator)$Env:PATH"
 
 # OPEN AI KEY PATH VAR
-$ENV:OPENAI_API_KEY = "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"
+$ENV:OPENAI_API_KEY = "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"
 $env:FLASK_APP = "app.py"
 
 # SIG # Begin signature block

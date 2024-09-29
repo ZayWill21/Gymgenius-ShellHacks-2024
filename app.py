@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, redirect, url_for, flash, jsonify, session, send_file
+from flask import Flask, request, render_template, redirect, url_for, flash, jsonify, session
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required, current_user
@@ -7,12 +7,14 @@ from api.requests.gg_request import gg_Request, gg_Datatype
 from api.requests.gg_programmer import Programmer
 from api.requests.gg_personalizer import Personalizer
 from flask_socketio import SocketIO, emit
-from icalendar import Calendar, Event
-import datetime
+from flask import send_file
 import os
-import re
+
 import threading
-import json
+
+# library to plot graph don't know if using yet
+#We are awesome
+# importing BMI calculation functions
 from fitness_utils import height_to_meters, weight_to_kg, calculate_bmi, generate_weight_graph 
 
 app = Flask(__name__)
@@ -44,7 +46,7 @@ class User(UserMixin, db.Model):
 
     def __repr__(self):
         return f'<User {self.name}>'
-
+    
 # Define a Conversation model for storing AI conversation history
 class Conversation(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -55,21 +57,29 @@ class Conversation(db.Model):
     def __repr__(self):
         return f'<Conversation {self.id}>'
 
-
 @login_manager.user_loader
 def load_user(user_id):
-    return User.query.get(user_id)
+    return User.query.get(int(user_id))
 
 # Initialize the database
 with app.app_context():
     db.create_all()
+
+@login_required
+@app.route('/progresstab', methods=['GET','POST'])
+def progresstab():
+    if current_user.is_authenticated:
+        return render_template('progresstab.html')
+    else:
+        flash("You must be logged in.", 'info')
+        return redirect(url_for('login'))
 
 # Define a route to register new users and log them in automatically
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated:
         flash('You are already logged in. No need to register again.', 'info')
-        return redirect(url_for('personalize'))
+        return redirect(url_for('personalize'))  # Redirect to the personalize page or wherever you want
 
     if request.method == 'POST':
         name = request.form['name']
@@ -88,6 +98,7 @@ def register():
         except (IndexError, ValueError):
             flash("Invalid height format. Please select from the dropdown.", 'danger')
             return redirect(url_for('register'))
+        
 
         weight = float(weight)
 
@@ -97,9 +108,11 @@ def register():
             flash(str(e), 'danger')
             return redirect(url_for('register'))
 
+
+
         # Check if the email already exists
         existing_user = User.query.filter_by(email=email).first()
-        if (existing_user):
+        if existing_user:
             flash('Email already exists. Please use a different email.', 'danger')
             return redirect(url_for('register'))
 
@@ -109,7 +122,6 @@ def register():
             age=age,
             height=height,
             weight=weight,
-            bmi=bmi,
             gender=gender,
             email=email,
             password=password  # In a real app, make sure to hash passwords
@@ -131,7 +143,7 @@ def register():
 def login():
     if current_user.is_authenticated:
         flash('You are already logged in. No need to login again.', 'info')
-        return redirect(url_for('personalize'))
+        return redirect(url_for('personalize'))  # Redirect to the personalize page or wherever you want
 
     if request.method == 'POST':
         email = request.form['email']
@@ -167,12 +179,13 @@ from io import BytesIO
 @app.route('/download/<filename>')
 def download(filename):
     try:
-        with open("schedules/"+filename, 'rb') as file:
+        with open('schedules/'+filename, 'rb') as file:
+            print(file.name)
             file_data = file.read()
         return send_file(BytesIO(file_data), download_name=filename, as_attachment=True)
     except Exception as e:
         return jsonify({'error': str(e)}), 500
-    
+import json
 @app.route('/clear', methods=['POST'])
 def clear():
     print("CALLED")
@@ -188,9 +201,9 @@ def clear():
 def process_input():
     data = request.get_json()
     
-    user_question = data.get('question', '').strip()
+    user_question = data.get('question', '').strip()  # Strip whitespace
 
-    if not user_question:
+    if not user_question:  # Check for empty input
         return jsonify({'answer': 'Please enter a question.'}), 400
     conversations = Conversation.query.filter_by(user_id=current_user.id).all()
 
@@ -214,8 +227,6 @@ def process_input():
             # Generate the workout routine from AI
             # Save the conversation to the database
             workout_schedule = programmer.make_request(conversations_json, current_user.id)
-            download_link = url_for('download', filename=programmer.file.name)
-
             new_conversation = Conversation(
                 user_question=user_question,
                 ai_response='Sorry, this download link is now inactive.',
@@ -223,8 +234,9 @@ def process_input():
             )
             db.session.add(new_conversation)
             db.session.commit()
+            filename = os.path.basename(programmer.file.name)
             
-            return jsonify({'answer': f'Your workout schedule is ready. Download it <a href="{download_link}">here</a>.'}), 200
+            return jsonify({'answer': f'Your workout schedule is ready. Download it <a href="{url_for('download', filename=filename)}">here</a>.'}), 200
         
         
         except Exception as e:
@@ -241,24 +253,75 @@ def process_input():
             new_conversation = Conversation(
                 user_question=user_question,
                 ai_response=ai_response,
-                user_id=current_user.id
+                user_id=current_user.id  # Use the current user's ID
             )
             db.session.add(new_conversation)
             db.session.commit()
-
+            
+            # Return the AI response to the user
             return jsonify({'answer': ai_response}), 200
+
         except Exception as e:
-            return jsonify({'error': str(e)}), 500
+            # Handle any potential exceptions
+            return jsonify({'answer': f"An error occurred: {str(e)}"}), 500
 
-@app.route('/about')
-def aboutpage():
-    return render_template('Aboutpage.html')
-        
+# Define a route to add user data (API)
+@app.route('/add_user', methods=['POST'])
+def add_user():
+    data = request.get_json()
+    new_user = User(
+        name=data['name'],
+        age=data['age'],
+        height=data['height'],
+        weight=data['weight'],
+        bmi = data['bmi'],
+        gender=data['gender'],
+        email=data['email'],
+        password=data['password']
+    )
+    db.session.add(new_user)
+    db.session.commit()
+    return jsonify({'message': 'User added successfully'}), 201
 
-@app.route('/progresstab')
-def progresstab():
-    return render_template('progresstab.html')
+# Define a route to get user data (API)
+@app.route('/users', methods=['GET'])
+def get_users():
+    users = User.query.all()
+    users_list = [{"id": user.id, "name": user.name, "age": user.age, "height": user.height, "weight": user.weight} for user in users]
+    return jsonify(users_list), 200
 
-# Run the Flask app
-if __name__ == '__main__':
-    socketio.run(app, debug=True)
+# Define a route to add a new conversation (API)
+@app.route('/add_conversation', methods=['POST'])
+def add_conversation():
+    data = request.get_json()
+    conversation_text = data.get('conversation')
+    user_id = data.get('user_id') #Expecting the User_id in the request data
+
+    # Find the user associated with the provided user_id
+    user = User.query.filter_by(user_id).first()
+
+    if not user:
+        return jsonify({'error':'User not found'}), 404 
+
+    # Create and save new conversation to the database
+    new_conversation = Conversation(conversation=conversation_text)
+    db.session.add(new_conversation)
+    db.session.commit()
+
+    return jsonify({'message': 'Conversation added successfully'}), 201
+
+# Define a route to get all conversations (API)
+@app.route('/conversations', methods=['GET'])
+def get_conversations(user_id):
+    user = User.query.get(user_id)
+
+    if not user:
+        return jsonify({'error': 'User not found'}), 404
+    
+    conversations = Conversation.query.filter_by(user_id=user_id).all()
+    conversations_list = [{"id": conv.id, "conversation": conv.conversation} for conv in conversations]
+    return jsonify(conversations_list), 200
+
+if __name__ == "__main__":
+    app.run(debug=True)
+

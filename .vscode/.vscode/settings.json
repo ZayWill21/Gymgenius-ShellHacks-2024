@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/d7591099-e3b4-4239-8fa8-931829015385/resourceGroups/ShellHacks/providers/Microsoft.Web/sites/Gymgenius",
+    "appService.deploySubpath": "."
+}
