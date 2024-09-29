@@ -1,9 +1,15 @@
+from flask.cli import load_dotenv
 from openai import OpenAI
 from .gg_handler import gg_Handler
+import os
 
+load_dotenv()
 class API:
     def __init__(self) -> None:
-        self.client = OpenAI()  # Defaults to os.environ.get("OPENAI_API_KEY")
+        key  = os.getenv("OPENAI_API_KEY")
+        self.client = OpenAI(
+            api_key=str(key)
+        )  
         self.rspn_handler = gg_Handler()
     
     def send_request(self, req_type, crafted_request):
