@@ -167,20 +167,6 @@ h1 {
     z-index: 1000; /* Ensure it stays on top of other elements */
 }
 
-/* Styles for the menu icon (hamburger icon) on the top-left */
-.menu-icon {
-    font-size: 2.5rem; /* Increase the size */
-    color: white; /* Make the hamburger icon white */
-    cursor: pointer; /* Pointer cursor on hover */
-    position: relative; /* Remove absolute positioning to keep it in flow */
-    margin-left: 10px; /* Add some space from the left edge */
-}
-
-/* Optional: Add hover effect */
-.menu-icon:hover {
-    color: #f0f0f0; /* Slightly lighter white on hover */
-}
-
 /* Styles for the logout button on the top-right */
 .logout-btn {
     background-color: #d9534f; /* Bootstrap danger color */
