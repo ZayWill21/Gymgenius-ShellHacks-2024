@@ -1,50 +1,72 @@
 BEGIN:VCALENDAR
 VERSION:2.0
 CALSCALE:GREGORIAN
+PRODID:-//Your Company//Push Pull Legs Split//EN
 METHOD:PUBLISH
-X-WR-CALNAME:Push Pull Legs Workout Program
+X-WR-CALNAME:Push Pull Legs Workout
 X-WR-TIMEZONE:UTC
-TZID:UTC
+
 BEGIN:VEVENT
-SUMMARY:Pull Day - Barbell Deadlift, Pull-Ups, etc.
+UID:1
+DTSTAMP:20240929T140000Z
+DTSTART:20240930T170000Z
+DTEND:20240930T183000Z
+SUMMARY:Pull Day
+DESCRIPTION:Exercises: \n1. Barbell Deadlift: 4 sets x 8 reps, Rest: 90s \n2. Pull-Ups: 3 sets x 6 reps, Rest: 90s \n3. Bent-Over Rows: 3 sets x 10 reps, Rest: 60s \n4. Face Pulls: 3 sets x 12 reps, Rest: 60s \n5. Bicep Curls: 3 sets x 10 reps, Rest: 60s
+END:VEVENT
+
+BEGIN:VEVENT
+UID:2
+DTSTAMP:20240929T140000Z
+DTSTART:20241001T170000Z
+DTEND:20241001T183000Z
+SUMMARY:Push Day
+DESCRIPTION:Exercises: \n1. Barbell Bench Press: 4 sets x 8 reps, Rest: 90s \n2. Overhead Dumbbell Press: 3 sets x 10 reps, Rest: 60s \n3. Incline Dumbbell Fly: 3 sets x 12 reps, Rest: 60s \n4. Tricep Dips: 3 sets x 10 reps, Rest: 90s \n5. Push-Ups: 3 sets x 15 reps, Rest: 60s
+END:VEVENT
+
+BEGIN:VEVENT
+UID:3
+DTSTAMP:20240929T140000Z
+DTSTART:20241002T170000Z
+DTEND:20241002T183000Z
+SUMMARY:Leg Day
+DESCRIPTION:Exercises: \n1. Barbell Squats: 4 sets x 8 reps, Rest: 90s \n2. Romanian Deadlift: 4 sets x 8 reps, Rest: 90s \n3. Leg Press: 3 sets x 10 reps, Rest: 60s \n4. Calf Raises: 3 sets x 12 reps, Rest: 60s \n5. Lunges: 3 sets x 10 reps, Rest: 60s
+END:VEVENT
+
+BEGIN:VEVENT
+UID:4
+DTSTAMP:20240929T140000Z
+DTSTART:20241003T170000Z
+DTEND:20241003T183000Z
+SUMMARY:Pull Day
+DESCRIPTION:Exercises: \n1. Barbell Rows: 4 sets x 8 reps, Rest: 90s \n2. Lat Pulldowns: 3 sets x 10 reps, Rest: 60s \n3. Dumbbell Shrugs: 3 sets x 12 reps, Rest: 60s \n4. Reverse Flyes: 3 sets x 12 reps, Rest: 60s \n5. Hammer Curls: 3 sets x 10 reps, Rest: 60s
+END:VEVENT
+
+BEGIN:VEVENT
+UID:5
+DTSTAMP:20240929T140000Z
 DTSTART:20241004T170000Z
-DTEND:20241004T190000Z
-DESCRIPTION:1. Barbell Deadlift: 4x8, 90s rest\n2. Pull-Ups: 3x6, 90s rest\n3. Bent-Over Rows: 3x10, 60s rest\n4. Face Pulls: 3x12, 60s rest\n5. Bicep Curls: 3x10, 60s rest
+DTEND:20241004T183000Z
+SUMMARY:Push Day
+DESCRIPTION:Exercises: \n1. Incline Barbell Press: 4 sets x 8 reps, Rest: 90s \n2. Arnold Press: 3 sets x 10 reps, Rest: 60s \n3. Chest Dips: 3 sets x 10 reps, Rest: 90s \n4. Cable Crossovers: 3 sets x 12 reps, Rest: 60s \n5. Skull Crushers: 3 sets x 10 reps, Rest: 60s
 END:VEVENT
+
 BEGIN:VEVENT
-SUMMARY:Push Day - Barbell Bench Press, Push-Ups, etc.
+UID:6
+DTSTAMP:20240929T140000Z
 DTSTART:20241005T170000Z
-DTEND:20241005T190000Z
-DESCRIPTION:1. Barbell Bench Press: 4x8, 90s rest\n2. Overhead Dumbbell Press: 3x10, 60s rest\n3. Incline Dumbbell Fly: 3x12, 60s rest\n4. Tricep Dips: 3x10, 90s rest\n5. Push-Ups: 3x15, 60s rest
+DTEND:20241005T183000Z
+SUMMARY:Leg Day
+DESCRIPTION:Exercises: \n1. Deadlifts: 4 sets x 8 reps, Rest: 90s \n2. Leg Curls: 3 sets x 10 reps, Rest: 60s \n3. Leg Extensions: 3 sets x 12 reps, Rest: 60s \n4. Lateral Lunges: 3 sets x 10 reps, Rest: 60s \n5. Seated Calf Raises: 3 sets x 15 reps, Rest: 60s
 END:VEVENT
+
 BEGIN:VEVENT
-SUMMARY:Leg Day - Squats, Romanian Deadlifts, etc.
+UID:7
+DTSTAMP:20240929T140000Z
 DTSTART:20241006T170000Z
-DTEND:20241006T190000Z
-DESCRIPTION:1. Squats: 4x8, 90s rest\n2. Romanian Deadlift: 4x8, 90s rest\n3. Leg Press: 3x10, 60s rest\n4. Calf Raises: 4x12, 60s rest\n5. Plank: 3x30-60s
-END:VEVENT
-BEGIN:VEVENT
-SUMMARY:Pull Day - Barbell Rows, Lat Pulldowns, etc.
-DTSTART:20241007T170000Z
-DTEND:20241007T190000Z
-DESCRIPTION:1. Barbell Rows: 4x8, 90s rest\n2. Lat Pulldowns: 3x10, 60s rest\n3. Dumbbell Shrugs: 3x12, 60s rest\n4. Reverse Flyes: 3x12, 60s rest\n5. Hammer Curls: 3x10, 60s rest
-END:VEVENT
-BEGIN:VEVENT
-SUMMARY:Push Day - Incline Barbell Press, Skull Crushers, etc.
-DTSTART:20241008T170000Z
-DTEND:20241008T190000Z
-DESCRIPTION:1. Incline Barbell Press: 4x8, 90s rest\n2. Arnold Press: 3x10, 60s rest\n3. Chest Dips: 3x10, 90s rest\n4. Cable Crossovers: 3x12, 60s rest\n5. Skull Crushers: 3x10, 60s rest
-END:VEVENT
-BEGIN:VEVENT
-SUMMARY:Leg Day - Deadlifts, Lunges, etc.
-DTSTART:20241009T170000Z
-DTEND:20241009T190000Z
-DESCRIPTION:1. Deadlifts: 4x8, 90s rest\n2. Lunges: 3x10 each leg, 60s rest\n3. Leg Curls: 3x12, 60s rest\n4. Box Jumps: 3x8, 90s rest\n5. Stretching: 10-15min
-END:VEVENT
-BEGIN:VEVENT
+DTEND:20241006T183000Z
 SUMMARY:Rest Day
-DTSTART:20241010T170000Z
-DTEND:20241010T180000Z
-DESCRIPTION:Rest and recovery
+DESCRIPTION:No workout today. Focus on recovery.
 END:VEVENT
+
 END:VCALENDAR

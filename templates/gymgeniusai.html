@@ -9,6 +9,7 @@
 <body>
     <!-- Logo Image (before the chat container) -->
     <img src="{{ url_for('static', filename='gymgenius.png') }}" class="background-logo" alt="GymGenius Logo">
+    
     <div class="navbar">
         <div class="navbar-items">
             <a href="{{url_for('personalize')}}" class="navbar-item">Home</a>
@@ -55,31 +56,33 @@
     <script>
         const clearUrl = "{{ url_for('clear') }}"; // Replace 'clear_conversation' with your route function name
 
-document.getElementById('clearBtn').addEventListener('click', function() {
-    fetch('/clear', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.status === 'success') {
-                // Reload the page if clearing was successful
-                location.reload();
-            } else {
-                alert('Error: ' + data.message);
-            }
-        })
-        .catch((error) => {
-            console.error('Error:', error);
+        // Handle clearing the chat
+        document.getElementById('clearBtn').addEventListener('click', function() {
+            fetch('/clear', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        // Reload the page if clearing was successful
+                        location.reload();
+                    } else {
+                        alert('Error: ' + data.message);
+                    }
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
         });
-});
+
         // Handle message submission
         document.getElementById('submitBtn').addEventListener('click', function() {
             const userInput = document.getElementById('userInput').value;
             if (!userInput) return; // Don't send empty messages
-
+            document.getElementById('userInput').value = '';
             // Append user's message to chat box
             addMessage('You', userInput);
 
@@ -115,6 +118,14 @@ document.getElementById('clearBtn').addEventListener('click', function() {
             chatBox.appendChild(messageDiv);
             chatBox.scrollTop = chatBox.scrollHeight; // Scroll to the bottom
         }
+
+        // Handle form submission via Enter key
+        document.getElementById('userInput').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();  // Prevent default form submit
+                document.getElementById('submitBtn').click();  // Simulate button click
+            }
+        });
 
         // Function to handle logout
         document.getElementById('logoutBtn').addEventListener('click', function() {
