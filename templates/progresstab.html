@@ -1,8 +1,53 @@
 <!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gym Genius Progress</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='progresstab.css') }}">
+    <!-- Add Chart.js library to create the line graph -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <h1>Progress</h1>
+    <div class="progress-container">
+        <h1>Progress</h1>
+        <div class="chart-container">
+            <canvas id="progressChart"></canvas> <!-- Canvas for the line graph -->
+        </div>
+    </div>
+
+    <script>
+        // Sample data for the line chart
+        const weightData = {
+            labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5'], // X-axis labels
+            datasets: [{
+                label: 'Weight Progress (kg)', // Label for the data
+                data: [75, 74, 73, 72, 71], // Example weight data for each week
+                fill: false,
+                borderColor: '#00509e', // Line color
+                tension: 0.1 // Line smoothness
+            }]
+        };
+
+        // Configuration for the chart
+        const config = {
+            type: 'line',
+            data: weightData,
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: false // Set to false if weight won't start from zero
+                    }
+                }
+            }
+        };
+
+        // Render the line chart on the canvas
+        const progressChart = new Chart(
+            document.getElementById('progressChart'),
+            config
+        );
+    </script>
 </body>
+</html>
