@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GymGenius Login</title>
+    <link rel="Stylesheet" href="/static/login_page.css">
+</head>
+<body>
+    
+    <!-- GymGenius Logo -->
+    <div class="logo">
+        <img src="/static/gymgenius.png" alt="Gym Genius logo" id="gymgenius-logo">
+    </div>
+
+    <!-- Login Form -->
+    <div class="login-box">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <ul class="flashed-messages">
+                {% for category, message in messages %}
+                    <li class="{{ category }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        {% endwith %}
+        <form id="login-form" action="{{ url_for('login') }}" method="POST">
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="submit-btn">Login</button>
+            </div>
+            <div class="form-group">
+                <p>Don't have an account? <a href="{{url_for('register')}}">Register here</a></p>
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>

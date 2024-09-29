@@ -1,0 +1,103 @@
+body {
+    background-color: #ffffff;
+    color: #ffffff;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Styling for the heading */
+h1 {
+    font-size: 4rem;
+    color: #110404;
+    position: absolute;
+    top: 10%;
+    text-align: center;
+    margin: 0;
+}
+
+/* Styling the logo */
+.logo {
+    position: absolute;  /* Make it absolute to position freely */
+    top: 0%;            /* Adjust the top margin */
+    left: 0%;           /* Adjust the left margin */
+}
+
+.logo img {
+    height: 350px;      /* Adjust size as needed */
+    width: auto;        /* Maintain aspect ratio */
+}
+
+/* Registration box styles */
+.registration-box {
+    background-color: rgba(23, 38, 102, 0.9); /* Semi-transparent with opacity */
+    padding: 30px;
+    border-radius: 15px;
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Form group styles */
+.form-group {
+    margin-bottom: 20px;
+}
+
+/* Input and select field styles */
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="password"],
+select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc; /* Added a border for visibility */
+    font-size: 1rem;
+    background-color: white;
+    color: black;
+}
+
+/* Label styles */
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 1.2rem;
+}
+
+/* Submit button styles */
+.submit-btn {
+    background-color: #00509e;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    width: 100%;
+}
+
+.submit-btn:hover {
+    background-color: #0073e6;
+}
+
+/* Optional: Add media query for responsive design */
+@media (max-width: 768px) {
+    .registration-box {
+        width: 80%;
+    }
+}
+
+/* Menu icon styles */
+.menu-icon {
+    font-size: 30px;
+    cursor: pointer;
+    margin-right: 20px;
+    color: black;  /* Set color to black */
+}

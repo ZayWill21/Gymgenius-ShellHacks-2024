@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GymGenius</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='gymgeniusai.css') }}">
+</head>
+<body>
+    <!-- Logo Image (before the chat container) -->
+    <img src="{{ url_for('static', filename='gymgenius.png') }}" class="background-logo" alt="GymGenius Logo">
+    <div class="navbar">
+        <div class="menu-icon" id="menu-icon">&#9776;</div>
+        <div class="navbar-items">
+            <a href="#home" class="navbar-item">Home</a>
+            <a href="{{url_for('progresstab')}}" class="navbar-item">Progress</a>
+            <a href="{{url_for('Aboutpage')}}" class="navbar-item">About</a>
+            <a href="#contact" class="navbar-item">Contact</a>
+        </div>
+        <button class="logout-btn" id="logoutBtn">Logout</button> <!-- Logout button -->
+    </div>
+    
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <ul class="flashed-messages">
+                {% for category, message in messages %}
+                    <li class="{{ category }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+    <div class="chat-container">
+        <div class="chat-box" id="chat-box">
+            {% for conversation in conversations %}
+                <div class="message user-message">
+                    <div class="bubble user-bubble">{{ conversation.user_question }}</div>
+                </div>
+                <div class="message ai-message">
+                    <div class="icon">💪</div>
+                    <div class="bubble">{{ conversation.ai_response }}</div>
+                </div>
+            {% endfor %}
+            <div class="message">
+                <div class="icon">💪</div>
+                <div class="bubble">Welcome to GymGenius! How can I assist you today?</div>
+            </div>
+        </div>
+        <div class="options">
+            <input type="text" id="userInput" placeholder="Type your question here...">
+            <button id="submitBtn">Submit</button>
+        </div>
+    </div>
+
+    <script>
+        // Handle message submission
+        document.getElementById('submitBtn').addEventListener('click', function() {
+            const userInput = document.getElementById('userInput').value;
+            if (!userInput) return; // Don't send empty messages
+
+            // Append user's message to chat box
+            addMessage('You', userInput);
+
+            // Send user's message to backend
+            fetch('/converse', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ question: userInput })
+            })
+            .then(response => response.json())
+            .then(data => {
+                addMessage('AI', data.answer); // Append AI's response
+            })
+            .catch(error => console.error('Error:', error));
+        });
+
+        // Function to add messages to the chat box
+        function addMessage(sender, text) {
+            const chatBox = document.getElementById('chat-box');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message';
+
+            if (sender === 'You') {
+                messageDiv.classList.add('user-message');
+                messageDiv.innerHTML = `<div class="bubble user-bubble">${text}</div>`;
+            } else {
+                messageDiv.classList.add('ai-message');
+                messageDiv.innerHTML = `<div class="icon">💪</div><div class="bubble">${text}</div>`;
+            }
+            
+            chatBox.appendChild(messageDiv);
+            chatBox.scrollTop = chatBox.scrollHeight; // Scroll to the bottom
+        }
+
+        // Function to handle logout
+        document.getElementById('logoutBtn').addEventListener('click', function() {
+            // Step 1: Clear any session data (localStorage, sessionStorage, cookies)
+            localStorage.clear();  // Clear all localStorage data
+            sessionStorage.clear(); // Clear all sessionStorage data
+
+            // Clear cookies (if you're using cookies for sessions)
+            document.cookie = "session=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            
+            // Step 2: Inform the backend and redirect the user to the login or home page after logout
+            fetch('{{url_for("logout")}}', {
+                method: 'POST'
+            })
+            .then(() => {
+                window.location.href = "{{url_for('login')}}";  // Redirect after logout
+            })
+            .catch(error => console.error('Logout failed:', error));
+        });
+    </script>
+</body>
+</html>
