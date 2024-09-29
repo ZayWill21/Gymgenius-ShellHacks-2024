@@ -37,12 +37,12 @@
                     <div class="bubble user-bubble">{{ conversation.user_question }}</div>
                 </div>
                 <div class="message ai-message">
-                    <div class="icon">🤖</div>
+                    <div class="icon">💪</div>
                     <div class="bubble">{{ conversation.ai_response }}</div>
                 </div>
             {% endfor %}
             <div class="message">
-                <div class="icon">🤖</div>
+                <div class="icon">💪</div>
                 <div class="bubble">Welcome to GymGenius! How can I assist you today?</div>
             </div>
         </div>
@@ -87,7 +87,7 @@
                 messageDiv.innerHTML = `<div class="bubble user-bubble">${text}</div>`;
             } else {
                 messageDiv.classList.add('ai-message');
-                messageDiv.innerHTML = `<div class="icon">🤖</div><div class="bubble">${text}</div>`;
+                messageDiv.innerHTML = `<div class="icon">💪</div><div class="bubble">${text}</div>`;
             }
             
             chatBox.appendChild(messageDiv);

@@ -43,7 +43,7 @@ jobs:
           client-id: ${{ secrets.AZURE_CLIENT_ID }}
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-          auth-type: f20a34dd-5e5a-4aab-82bf-1ffc672bb1b1
+          auth-type: ${{ secrets.SERVICE_PRINCIPAL }}
           enable-AzPSSession: true
 
       - name: Set up Python version
