@@ -63,6 +63,15 @@ def load_user(user_id):
 with app.app_context():
     db.create_all()
 
+@login_required
+@app.route('/progresstab', methods=['GET','POST'])
+def progresstab():
+    if current_user.is_authenticated:
+        return render_template('progresstab.html')
+    else:
+        flash("You must be logged in.", 'info')
+        return redirect(url_for('login'))
+
 # Define a route to register new users and log them in automatically
 @app.route('/register', methods=['GET', 'POST'])
 def register():
