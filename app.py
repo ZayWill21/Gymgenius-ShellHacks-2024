@@ -65,9 +65,9 @@ def load_user(user_id):
 with app.app_context():
     db.create_all()
 
-@app.route('/Aboutpage', methods=['GET'])
-def Aboutpage():
-    return render_template('Aboutpage.html')
+@app.route('/aboutpage', methods=['GET'])
+def aboutpage():
+    return render_template('aboutpage.html')
 
 @login_required
 @app.route('/progresstab', methods=['GET','POST'])
@@ -173,11 +173,16 @@ def logout():
     return redirect(url_for('login'))
 
 # Define a protected route that requires login
+@app.route('/home', methods=['GET'])
 @app.route('/personalize-experience', methods=['GET'])
 @login_required
 def personalize():
     conversations = Conversation.query.filter_by(user_id=current_user.id).all()
     return render_template('gymgeniusai.html', conversations=conversations)
+
+@app.route('/contactpage', methods=['GET'])
+def contactpage():
+    return render_template('contactpage.html')
 
 from io import BytesIO
 @app.route('/download/<filename>')
@@ -198,7 +203,9 @@ def clear():
         db.session.commit()
         if success:
             flash('Conversation history cleared.', 'info')
-            return redirect(url_for('personalize'))
+            return jsonify({'status': 'success'}), 200
+        else:
+            return jsonify({'status': 'error', 'message': 'No conversations to clear.'}), 400
         
 @app.route('/converse', methods=['POST'])
 @login_required

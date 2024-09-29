@@ -11,10 +11,10 @@
     <img src="{{ url_for('static', filename='gymgenius.png') }}" class="background-logo" alt="GymGenius Logo">
     <div class="navbar">
         <div class="navbar-items">
-            <a href="#home" class="navbar-item">Home</a>
+            <a href="{{url_for('personalize')}}" class="navbar-item">Home</a>
             <a href="{{url_for('progresstab')}}" class="navbar-item">Progress</a>
             <a href="{{url_for('aboutpage')}}" class="navbar-item">About</a>
-            <a href="#contact" class="navbar-item">Contact</a>
+            <a href="{{url_for('contactpage')}}" class="navbar-item">Contact</a>
             <button id="clearBtn">Clear</button>
         </div>
         <button class="logout-btn" id="logoutBtn">Logout</button> <!-- Logout button -->
@@ -56,19 +56,24 @@
         const clearUrl = "{{ url_for('clear') }}"; // Replace 'clear_conversation' with your route function name
 
 document.getElementById('clearBtn').addEventListener('click', function() {
-    fetch(clearUrl, {
-        method: 'POST',
-        credentials: 'include' // Include cookies for authentication
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            alert("Conversation cleared successfully!");
-            // Optionally, refresh the conversation display
-        } else {
-            alert("Failed to clear conversation.");
-        }
-    });
+    fetch('/clear', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                // Reload the page if clearing was successful
+                location.reload();
+            } else {
+                alert('Error: ' + data.message);
+            }
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
 });
         // Handle message submission
         document.getElementById('submitBtn').addEventListener('click', function() {

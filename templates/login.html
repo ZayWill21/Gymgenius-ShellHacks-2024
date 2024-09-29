@@ -7,7 +7,16 @@
     <link rel="Stylesheet" href="/static/login_page.css">
 </head>
 <body>
-    
+    <div class="navbar">
+        <div class="navbar-items">
+                <a href="{{url_for('personalize')}}" class="navbar-item">Home</a>
+                <a href="{{url_for('progresstab')}}" class="navbar-item">Progress</a>
+                <a href="{{url_for('aboutpage')}}" class="navbar-item">About</a>
+                <a href="{{url_for('contactpage')}}" class="navbar-item">Contact</a>
+        </div>
+        <button class="logout-btn invisible" id="logoutBtn">Logout</button> <!-- Logout button -->
+
+    </div>
     <!-- GymGenius Logo -->
     <div class="logo">
         <img src="/static/gymgenius.png" alt="Gym Genius logo" id="gymgenius-logo">

@@ -15,10 +15,10 @@
     <!-- Navigation bar -->
     <div class="navbar">
         <div class="navbar-items">
-            <a href="#home" class="navbar-item">Home</a>
-            <a href="{{url_for('progresstab')}}" class="navbar-item">Progress</a>
-            <a href="{{url_for('aboutpage')}}" class="navbar-item">About</a>
-            <a href="#contact" class="navbar-item">Contact</a>
+                <a href="{{url_for('personalize')}}" class="navbar-item">Home</a>
+                <a href="{{url_for('progresstab')}}" class="navbar-item">Progress</a>
+                <a href="{{url_for('aboutpage')}}" class="navbar-item">About</a>
+                <a href="{{url_for('contactpage')}}" class="navbar-item">Contact</a>
         </div>
         <button class="logout-btn" id="logoutBtn">Logout</button> <!-- Logout button -->
     </div>
@@ -34,15 +34,16 @@
     <script>
         // Sample data for the line chart
         const weightData = {
-            labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5'], // X-axis labels
-            datasets: [{
-                label: 'Weight Progress (kg)', // Label for the data
-                data: [75, 74, 73, 72, 71], // Example weight data for each week
-                fill: false,
-                borderColor: '#00509e', // Line color
-                tension: 0.1 // Line smoothness
-            }]
-        };
+    labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6', 'Week 7', 'Week 8', 'Week 9', 'Week 10'], // X-axis labels
+    datasets: [{
+        label: 'Weight Progress (kg)', // Label for the data
+        data: [75, 74.5, 74, 73.5, 73, 72.8, 72.5, 72.2, 71.8, 71.5], // Updated weight data for each week
+        fill: false,
+        borderColor: '#00509e', // Line color
+        tension: 0.1 // Line smoothness
+    }]
+};
+
 
         // Configuration for the chart
         const config = {

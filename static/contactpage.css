@@ -1,13 +1,102 @@
-/* Body styles */
+/* Global styles */
 body {
     background-color: #ffffff;
-    color: #ffffff;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: #110404;
+    font-family: Arial, sans-serif;
     margin: 0;
     height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+/* Heading styles */
+h1 {
+    font-size: 4rem;
+    color: #110404;
+    text-align: center;
+    margin-top: 100px;
+    margin-bottom: 2% 0;
+}
+
+/* Contact section styles */
+.about-section {
+    width: 60%;
+    background-color: rgba(23, 38, 102, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.about-section h2 {
+    font-size: 2rem;
+    color: #00509e;
+}
+
+.about-section p,
+.about-section ul {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #333;
+}
+
+.about-section ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+.about-section ul li {
+    font-size: 1.1rem;
+    line-height: 1.5;
+}
+
+/* Contact form styles */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form label {
+    font-size: 1.2rem;
+    color: #110404;
+    margin-bottom: 5px;
+}
+
+form input,
+form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+form button {
+    background-color: #00509e;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #003366;
+}
+
+/* Logo styles */
+.logo {
+    position: absolute;
+    top: 5%;
+    left: 5%;
+}
+
+.logo img {
+    height: 150px;
+    width: auto;
 }
 
 .navbar {
@@ -64,107 +153,13 @@ body {
     transition: background-color 0.3s; /* Smooth transition */
     z-index: 1001; /* Ensure it stays on top of navbar */
 }
-
-/* Styling for the heading */
-h1 {
-    font-size: 4rem;
-    color: #110404;
-    position: absolute;
-    top: 10%;
-    text-align: center;
-    margin: 0;
-}
-
-.logo {
-    position: center;
-    display: flex;
-    height: auto; /* Allow height to auto-adjust */
-    top: 10px;
-    left: 0%;
-}
-
-.logo img {
-    height: 500px; /* Increase height to make the logo bigger */
-    width: 500px; /* Increase width to match height */
-}
-
-/* Login box styles */
-.login-box {
-    background-color: rgb(23, 38, 102); /* Consistent with registration page */
-    padding: 30px;
-    border-radius: 15px;
-    position: absolute;
-    top: 65%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 30%;
-    height: 40%;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-}
-
-/* Form group styles */
-.form-group {
-    margin-bottom: 20px;
-}
-
-/* Input field styles */
-input[type="email"],
-input[type="password"] {
-    width: 96%;
-    padding: 10px;
-    border-radius: 5px;
-    border: none;
-    font-size: 1rem;
-    background-color: white;
-    color: black;
-    position: relative;
-}
-
-/* Label styles */
-label {
-    display: flex;
-    margin-bottom: 5px;
-    font-size: 1.2rem;
-}
-
-/* Submit button styles */
-.submit-btn {
-    background-color: #00509e;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    font-size: 1.2rem;
-    cursor: pointer;
-    width: 100%;
-}
-
-.submit-btn:hover {
-    background-color: #0073e6;
-}
-
-/* Link to registration page */
-.form-group p a {
-    color: #0073e6;
-    text-decoration: none;
-}
-
-.form-group p a:hover {
-    text-decoration: underline;
-}
-
-
-/* Media query for responsive design */
+/* Responsive design */
 @media (max-width: 768px) {
-    .login-box {
-        width: 80%;
+    .about-section {
+        width: 90%;
     }
-}
 
-/* Menu icon styles */
-.menu-icon {
-    font-size: 30px;
-    cursor: pointer;
-    margin-right: 20px;
-    color: black;
+    .logo img {
+        height: 100px;
+    }
 }

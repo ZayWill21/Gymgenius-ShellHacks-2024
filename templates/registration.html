@@ -6,14 +6,18 @@
 <body>
     <h1>GymGenius Registration</h1>
     <!-- Navigation -->
-    <div class="navbar">
-    </div>
-    <div class="sidebar" id="sidebar">
-        <a href="#home" class="sidebar-item">Home</a>
-        <a href="#about" class="sidebar-item">About</a>
-        <a href="#services" class="sidebar-item">Services</a>
-        <a href="#contact" class="sidebar-item">Contact</a>
-    </div>
+        <!-- Navigation -->
+        <div class="navbar">
+            <div class="navbar-items">
+                    <a href="{{url_for('personalize')}}" class="navbar-item">Home</a>
+                    <a href="{{url_for('progresstab')}}" class="navbar-item">Progress</a>
+                    <a href="{{url_for('aboutpage')}}" class="navbar-item">About</a>
+                    <a href="{{url_for('contactpage')}}" class="navbar-item">Contact</a>
+            </div>
+            <button class="logout-btn invisible" id="logoutBtn">Logout</button> <!-- Logout button -->
+    
+        </div>
+    
     <div class="logo">
         <img src="{{ url_for('static', filename='gymgenius.png') }}" alt="Gym Genius logo" id="gymgenius-logo">
     </div>
@@ -86,6 +90,9 @@
             </div>
             <div class="form-group">
                 <button type="submit" class="submit-btn">Register</button>
+            </div>
+            <div class="form-group">
+                <p>Already have an account? <a href="{{url_for('login')}}">Login here</a></p>
             </div>
         </form>
     </div>

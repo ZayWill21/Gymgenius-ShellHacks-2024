@@ -2,7 +2,7 @@
 body {
     background-color: #ffffff;
     color: #110404;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: Arial, sans-serif;
     margin: 0;
     height: 100vh;
     display: flex;
@@ -18,7 +18,6 @@ h1 {
     margin-top: 100px;
     margin-bottom: 2% 0;
 }
-
 /* About section styles */
 .about-section {
     width: 60%;
@@ -62,51 +61,59 @@ h1 {
     width: auto;
 }
 
-/* Navbar styles */
 .navbar {
-    width: 100%;
-    background-color: #00509e;
-    color: white;
-    position: fixed;
-    top: 0;
-    left: 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #00509e; /* Navbar background color */
+    width: 100%; /* Full width */
+    display: flex; /* Flex layout */
+    justify-content: space-between; /* Space between the hamburger icon and logout button */
+    align-items: center; /* Center items vertically */
+    padding: 10px 20px; /* Padding inside the navbar */
+    position: fixed; /* Fixed positioning to stay at the top */
+    top: 0; /* Align to the top */
+    left: 0; /* Align to the left */
+    z-index: 1000; /* Ensure it stays on top of other elements */
 }
 
+/* Menu icon styles */
 .menu-icon {
     font-size: 30px;
     cursor: pointer;
-    margin-left: 20px;
     color: white;
 }
-
-.sidebar {
-    display: flex;
-    flex-direction: column;
-    position: fixed;
-    top: 60px;
-    left: 0;
-    background-color: #003366;
-    width: 200px;
-    height: 100vh;
-    padding-top: 20px;
+.invisible {
+    visibility: hidden; /* This will hide the element but keep its space */
 }
 
-.sidebar-item {
-    padding: 10px;
-    color: white;
-    text-decoration: none;
-    font-size: 1.2rem;
+.logout-btn {
+    background-color: #d9534f; /* Bootstrap danger color */
+    color: white; /* Text color */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 5px 10px; /* Small padding */
+    cursor: pointer; /* Pointer cursor */
+    font-size: 0.9rem; /* Slightly smaller font */
+    position: relative; /* Remove absolute positioning */
+    margin-right: 30px; /* Space from the right */
+    transition: background-color 0.3s; /* Smooth transition */
+    z-index: 1001; /* Ensure it stays on top of navbar */
+}
+/* Adjust navbar-items to be centered and spaced evenly */
+.navbar-items {
+    display: flex; /* Horizontal layout for navbar items */
+    gap: 20px; /* Space between items */
+    margin: 0 auto; /* Center the navbar items */
 }
 
-.sidebar-item:hover {
-    background-color: #00509e;
+/* Styles for the navigation bar links */
+.navbar-item {
+    color: white; /* Make the navbar links white */
+    text-decoration: none; /* Remove underline */
 }
 
+/* Optional: Add a hover effect for better UX */
+.navbar-item:hover {
+    text-decoration: underline; /* Underline on hover */
+}
 /* Responsive design */
 @media (max-width: 768px) {
     .about-section {

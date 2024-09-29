@@ -206,3 +206,29 @@ h1 {
     position: relative; /* Ensure chat box is on top of the logo */
     z-index: 1; /* Higher z-index than the logo */
 }
+/* Style for the Clear button */
+#clearBtn {
+    padding: 4px 15px; /* Padding for the button */
+    border: none; /* Remove border */
+    background-color: #f0ad4e; /* Button color (Bootstrap warning color) */
+    color: white; /* Text color */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 0.9rem; /* Slightly smaller font */
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+    display: inline-block; /* Align with other navbar items */
+    text-align: center; /* Center text */
+}
+
+/* Hover effect for the Clear button */
+#clearBtn:hover {
+    background-color: #ec971f; /* Darker shade on hover */
+}
+
+/* Align Clear button with the navbar items */
+.navbar-items {
+    display: flex; /* Horizontal layout for navbar items */
+    align-items: center; /* Align items vertically in the center */
+    gap: 20px; /* Space between items */
+    margin: 0 auto; /* Center the navbar items */
+}

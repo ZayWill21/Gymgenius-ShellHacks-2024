@@ -84,7 +84,69 @@ label {
     background-color: #0073e6;
 }
 
-/* Sidebar, navbar, and other existing CSS from the provided template remain the same */
+.navbar {
+    background-color: #00509e; /* Navbar background color */
+    width: 100%; /* Full width */
+    display: flex; /* Flex layout */
+    justify-content: space-between; /* Space between the hamburger icon and logout button */
+    align-items: center; /* Center items vertically */
+    padding: 10px 20px; /* Padding inside the navbar */
+    position: fixed; /* Fixed positioning to stay at the top */
+    top: 0; /* Align to the top */
+    left: 0; /* Align to the left */
+    z-index: 1000; /* Ensure it stays on top of other elements */
+}
+
+/* Menu icon styles */
+.menu-icon {
+    font-size: 30px;
+    cursor: pointer;
+    color: white;
+}
+
+/* Adjust navbar-items to be centered and spaced evenly */
+.navbar-items {
+    display: flex; /* Horizontal layout for navbar items */
+    gap: 20px; /* Space between items */
+    margin: 0 auto; /* Center the navbar items */
+}
+
+/* Styles for the navigation bar links */
+.navbar-item {
+    color: white; /* Make the navbar links white */
+    text-decoration: none; /* Remove underline */
+}
+
+/* Optional: Add a hover effect for better UX */
+.navbar-item:hover {
+    text-decoration: underline; /* Underline on hover */
+}
+.invisible {
+    visibility: hidden; /* This will hide the element but keep its space */
+}
+
+.logout-btn {
+    background-color: #d9534f; /* Bootstrap danger color */
+    color: white; /* Text color */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 5px 10px; /* Small padding */
+    cursor: pointer; /* Pointer cursor */
+    font-size: 0.9rem; /* Slightly smaller font */
+    position: relative; /* Remove absolute positioning */
+    margin-right: 30px; /* Space from the right */
+    transition: background-color 0.3s; /* Smooth transition */
+    z-index: 1001; /* Ensure it stays on top of navbar */
+}
+* Link to registration page */
+.form-group p a {
+    color: #0073e6;
+    text-decoration: none;
+}
+
+.form-group p a:hover {
+    text-decoration: underline;
+}
 
 /* Optional: Add media query for responsive design */
 @media (max-width: 768px) {

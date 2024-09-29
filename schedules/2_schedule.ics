@@ -1,0 +1,64 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//My Workout Scheduler//NONSGML v1.0//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Push-Pull-Legs Workout Routine
+
+BEGIN:VEVENT
+SUMMARY:Pull Day Workout
+DTSTART:20240930T170000Z
+DTEND:20240930T180000Z
+DESCRIPTION:Exercises:\n1. Barbell Deadlift: 4 sets of 8 reps, Rest: 90 seconds\n2. Pull-Ups: 3 sets of 6 reps, Rest: 90 seconds\n3. Bent-Over Rows: 3 sets of 10 reps, Rest: 60 seconds\n4. Face Pulls: 3 sets of 12 reps, Rest: 60 seconds\n5. Bicep Curls: 3 sets of 10 reps, Rest: 60 seconds
+END:VEVENT
+
+BEGIN:VEVENT
+SUMMARY:Push Day Workout
+DTSTART:20241001T170000Z
+DTEND:20241001T180000Z
+DESCRIPTION:Exercises:\n1. Barbell Bench Press: 4 sets of 8 reps, Rest: 90 seconds\n2. Overhead Dumbbell Press: 3 sets of 10 reps, Rest: 60 seconds\n3. Incline Dumbbell Fly: 3 sets of 12 reps, Rest: 60 seconds\n4. Tricep Dips: 3 sets of 10 reps, Rest: 90 seconds\n5. Push-Ups: 3 sets of 15 reps, Rest: 60 seconds
+END:VEVENT
+
+BEGIN:VEVENT
+SUMMARY:Leg Day Workout
+DTSTART:20241002T170000Z
+DTEND:20241002T180000Z
+DESCRIPTION:Exercises:\n1. Squats: 4 sets of 8 reps, Rest: 90 seconds\n2. Leg Press: 3 sets of 10 reps, Rest: 60 seconds\n3. Lunges: 3 sets of 12 reps, Rest: 60 seconds\n4. Calf Raises: 3 sets of 15 reps, Rest: 60 seconds\n5. Leg Curls: 3 sets of 10 reps, Rest: 60 seconds
+END:VEVENT
+
+BEGIN:VEVENT
+SUMMARY:Pull Day Workout
+DTSTART:20241003T170000Z
+DTEND:20241003T180000Z
+DESCRIPTION:Exercises:\n1. Barbell Rows: 4 sets of 8 reps, Rest: 90 seconds\n2. Lat Pulldowns: 3 sets of 10 reps, Rest: 60 seconds\n3. Dumbbell Shrugs: 3 sets of 12 reps, Rest: 60 seconds\n4. Reverse Flyes: 3 sets of 12 reps, Rest: 60 seconds\n5. Hammer Curls: 3 sets of 10 reps, Rest: 60 seconds
+END:VEVENT
+
+BEGIN:VEVENT
+SUMMARY:Push Day Workout
+DTSTART:20241004T170000Z
+DTEND:20241004T180000Z
+DESCRIPTION:Exercises:\n1. Incline Barbell Press: 4 sets of 8 reps, Rest: 90 seconds\n2. Arnold Press: 3 sets of 10 reps, Rest: 60 seconds\n3. Chest Dips: 3 sets of 10 reps, Rest: 90 seconds\n4. Cable Crossovers: 3 sets of 12 reps, Rest: 60 seconds\n5. Skull Crushers: 3 sets of 10 reps, Rest: 60 seconds
+END:VEVENT
+
+BEGIN:VEVENT
+SUMMARY:Leg Day Workout
+DTSTART:20241005T170000Z
+DTEND:20241005T180000Z
+DESCRIPTION:Exercises:\n1. Romanian Deadlift: 4 sets of 8 reps, Rest: 90 seconds\n2. Seated Leg Press: 3 sets of 10 reps, Rest: 60 seconds\n3. Lateral Lunges: 3 sets of 12 reps, Rest: 60 seconds\n4. Seated Calf Raises: 3 sets of 15 reps, Rest: 60 seconds\n5. Leg Extensions: 3 sets of 10 reps, Rest: 60 seconds
+END:VEVENT
+
+BEGIN:VEVENT
+SUMMARY:Rest Day
+DTSTART:20241006T170000Z
+DTEND:20241006T180000Z
+DESCRIPTION:Rest and recovery day. Focus on stretching and hydration.
+END:VEVENT
+
+BEGIN:VEVENT
+SUMMARY:Pull Day Workout
+DTSTART:20241007T170000Z
+DTEND:20241007T180000Z
+DESCRIPTION:Exercises:\n1. Barbell Deadlift: 4 sets of 8 reps, Rest: 90 seconds\n2. Pull-Ups: 3 sets of 6 reps, Rest: 90 seconds\n3. Bent-Over Rows: 3 sets of 10 reps, Rest: 60 seconds\n4. Face Pulls: 3 sets of 12 reps, Rest: 60 seconds\n5. Bicep Curls: 3 sets of 10 reps, Rest: 60 seconds
+END:VEVENT
+
+END:VCALENDAR

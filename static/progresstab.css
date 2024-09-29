@@ -13,7 +13,7 @@ body {
 
 /* Style for the logo image */
 .background-logo {
-    width: 150px; /* Set desired width */
+    width: 180px; /* Increased width for logo */
     height: auto; /* Maintain aspect ratio */
     position: absolute; /* Make sure it doesn't disrupt other elements */
     top: 20px; /* Position from the top */
@@ -27,7 +27,7 @@ body {
     align-items: center;
     justify-content: center;
     background-color: #ffffff;
-    padding: 40px;
+    padding: 60px; /* Increased padding */
     border-radius: 15px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
@@ -35,7 +35,8 @@ body {
 /* Style for the page header */
 h1 {
     color: #00509e;
-    margin-bottom: 20px;
+    font-size: 2.5rem; /* Increased font size */
+    margin-bottom: 30px; /* Extra space */
 }
 
 /* Adjusted Styles for the navigation bar */
@@ -72,9 +73,9 @@ h1 {
 
 /* Chart container to hold the line graph */
 .chart-container {
-    width: 80vw; /* 80% of the viewport width */
-    max-width: 800px; /* Maximum width for the chart */
-    height: 400px; /* Fixed height for the chart */
+    width: 90vw; /* Increased width to 90% of the viewport */
+    max-width: 1000px; /* Increased maximum width for the chart */
+    height: 500px; /* Increased height for the chart */
     position: relative; /* Relative positioning */
 }
 
@@ -96,7 +97,7 @@ h1 {
 /* Responsive design adjustments */
 @media (max-width: 768px) {
     .chart-container {
-        width: 90vw; /* Increase width on smaller screens */
-        height: 300px; /* Reduce height on smaller screens */
+        width: 95vw; /* Increase width on smaller screens */
+        height: 350px; /* Reduce height on smaller screens */
     }
 }

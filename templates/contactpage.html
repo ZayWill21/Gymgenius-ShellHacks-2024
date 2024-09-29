@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GymGenius Contact</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='Contactpage.css') }}">
+</head>
+<body>
+    <h1>Contact Us</h1>
+
+    <div class="navbar">
+        <div class="navbar-items">
+                <a href="{{url_for('personalize')}}" class="navbar-item">Home</a>
+                <a href="{{url_for('progresstab')}}" class="navbar-item">Progress</a>
+                <a href="{{url_for('aboutpage')}}" class="navbar-item">About</a>
+                <a href="{{url_for('contactpage')}}" class="navbar-item">Contact</a>
+        </div>
+        <button class="logout-btn invisible" id="logoutBtn">Logout</button> <!-- Logout button -->
+
+    </div>
+
+
+    <!-- Logo -->
+    <div class="logo">
+        <img src="{{ url_for('static', filename='gymgenius.png') }}" alt="Gym Genius logo" id="gymgenius-logo">
+    </div>
+
+    <!-- Contact Section -->
+    <div class="about-section">
+        <h2>Get in Touch</h2>
+        <p>We would love to hear from you! Please fill out the form below or use the following contact information to reach out to us directly.</p>
+    </div>
+
+    <!-- Contact Information Section -->
+    <div class="about-section">
+        <h2>Contact Information</h2>
+        <ul>
+            <li>Email: support@gymgenius.com</li>
+            <li>Phone: +1 (123) 456-7890</li>
+            <li>Address: 123 Fitness Street, Health City, Fitland 45678</li>
+        </ul>
+    </div>
+
+    <!-- Contact Form Section -->
+    <div class="about-section">
+        <h2>Contact Form</h2>
+        <form>
+            <label for="name">Name:</label><br>
+            <input type="text" id="name" name="name" required><br><br>
+
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" name="email" required><br><br>
+
+            <label for="message">Message:</label><br>
+            <textarea id="message" name="message" rows="5" required></textarea><br><br>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+</body>
+</html>
