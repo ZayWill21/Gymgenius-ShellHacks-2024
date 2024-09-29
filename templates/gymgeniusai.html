@@ -13,8 +13,8 @@
         <div class="menu-icon" id="menu-icon">&#9776;</div>
         <div class="navbar-items">
             <a href="#home" class="navbar-item">Home</a>
-            <a href="#about" class="navbar-item">About</a>
-            <a href="#services" class="navbar-item">Services</a>
+            <a href="{{url_for('progresstab')}}" class="navbar-item">Progress</a>
+            <a href="{{url_for('Aboutpage')}}" class="navbar-item">About</a>
             <a href="#contact" class="navbar-item">Contact</a>
         </div>
         <button class="logout-btn" id="logoutBtn">Logout</button> <!-- Logout button -->
@@ -37,12 +37,12 @@
                     <div class="bubble user-bubble">{{ conversation.user_question }}</div>
                 </div>
                 <div class="message ai-message">
-                    <div class="icon">🤖</div>
+                    <div class="icon">💪</div>
                     <div class="bubble">{{ conversation.ai_response }}</div>
                 </div>
             {% endfor %}
             <div class="message">
-                <div class="icon">🤖</div>
+                <div class="icon">💪</div>
                 <div class="bubble">Welcome to GymGenius! How can I assist you today?</div>
             </div>
         </div>
@@ -87,7 +87,7 @@
                 messageDiv.innerHTML = `<div class="bubble user-bubble">${text}</div>`;
             } else {
                 messageDiv.classList.add('ai-message');
-                messageDiv.innerHTML = `<div class="icon">🤖</div><div class="bubble">${text}</div>`;
+                messageDiv.innerHTML = `<div class="icon">💪</div><div class="bubble">${text}</div>`;
             }
             
             chatBox.appendChild(messageDiv);
