@@ -1,0 +1,72 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+PRODID:-//Your Workout Program//EN
+X-WR-CALNAME:Push Pull Legs Workout Routine
+
+BEGIN:VEVENT
+UID:1@workout.com
+SUMMARY:Push Day - Chest and Triceps
+DTSTART:20240930T170000Z
+DTEND:20240930T180000Z
+DESCRIPTION:Barbell Bench Press: 4 sets of 8 reps, rest 90 secs\nOverhead Dumbbell Press: 3 sets of 10 reps, rest 60 secs\nIncline Dumbbell Fly: 3 sets of 12 reps, rest 60 secs\nTricep Dips: 3 sets of 10 reps, rest 90 secs\nPush-Ups: 3 sets of 15 reps, rest 60 secs
+END:VEVENT
+
+BEGIN:VEVENT
+UID:2@workout.com
+SUMMARY:Pull Day - Back and Biceps
+DTSTART:20241001T170000Z
+DTEND:20241001T180000Z
+DESCRIPTION:Barbell Deadlift: 4 sets of 8 reps, rest 90 secs\nPull-Ups: 3 sets of 6 reps, rest 90 secs\nBent-Over Rows: 3 sets of 10 reps, rest 60 secs\nFace Pulls: 3 sets of 12 reps, rest 60 secs\nBicep Curls: 3 sets of 10 reps, rest 60 secs
+END:VEVENT
+
+BEGIN:VEVENT
+UID:3@workout.com
+SUMMARY:Leg Day - Quads and Hamstrings
+DTSTART:20241002T170000Z
+DTEND:20241002T180000Z
+DESCRIPTION:Squats: 4 sets of 8 reps, rest 90 secs\nRomanian Deadlifts: 4 sets of 8 reps, rest 90 secs\nLeg Press: 3 sets of 10 reps, rest 60 secs\nLeg Curls: 3 sets of 12 reps, rest 60 secs\nCalf Raises: 3 sets of 15 reps, rest 60 secs
+END:VEVENT
+
+BEGIN:VEVENT
+UID:4@workout.com
+SUMMARY:Push Day - Chest and Triceps
+DTSTART:20241003T170000Z
+DTEND:20241003T180000Z
+DESCRIPTION:Incline Barbell Press: 4 sets of 8 reps, rest 90 secs\nArnold Press: 3 sets of 10 reps, rest 60 secs\nChest Dips: 3 sets of 10 reps, rest 90 secs\nCable Crossovers: 3 sets of 12 reps, rest 60 secs\nSkull Crushers: 3 sets of 10 reps, rest 60 secs
+END:VEVENT
+
+BEGIN:VEVENT
+UID:5@workout.com
+SUMMARY:Pull Day - Back and Biceps
+DTSTART:20241004T170000Z
+DTEND:20241004T180000Z
+DESCRIPTION:Barbell Rows: 4 sets of 8 reps, rest 90 secs\nLat Pulldowns: 3 sets of 10 reps, rest 60 secs\nDumbbell Shrugs: 3 sets of 12 reps, rest 60 secs\nReverse Flyes: 3 sets of 12 reps, rest 60 secs\nHammer Curls: 3 sets of 10 reps, rest 60 secs
+END:VEVENT
+
+BEGIN:VEVENT
+UID:6@workout.com
+SUMMARY:Leg Day - Quads and Hamstrings
+DTSTART:20241005T170000Z
+DTEND:20241005T180000Z
+DESCRIPTION:Leg Extensions: 4 sets of 10 reps, rest 60 secs\nStiff-Legged Deadlifts: 4 sets of 8 reps, rest 90 secs\nWalking Lunges: 3 sets of 10 reps, rest 60 secs\nSeated Calf Raises: 3 sets of 12 reps, rest 60 secs\nLeg Press Calf Raises: 3 sets of 15 reps, rest 60 secs
+END:VEVENT
+
+BEGIN:VEVENT
+UID:7@workout.com
+SUMMARY:Rest Day
+DTSTART:20241006T170000Z
+DTEND:20241006T180000Z
+DESCRIPTION:Rest and Recover
+END:VEVENT
+
+BEGIN:VEVENT
+UID:8@workout.com
+SUMMARY:Active Recovery or Light Cardio
+DTSTART:20241007T170000Z
+DTEND:20241007T180000Z
+DESCRIPTION:Light Cardio or Stretching
+END:VEVENT
+
+END:VCALENDAR

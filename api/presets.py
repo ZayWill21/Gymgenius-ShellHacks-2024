@@ -4,49 +4,11 @@ class Presets():
 
     @staticmethod
     def get_text_example():
-        return """
-        Maintaining a balanced diet rich in whole foods, combined with regular exercise, is key to long-term health. Prioritize lean proteins, healthy fats, and a variety of fruits and vegetables. Stay hydrated and ensure adequate sleep for recovery. Consistency is more important than perfection
-        """
+        return """Maintaining a balanced diet rich in whole foods, combined with regular exercise, is key to long-term health. Prioritize lean proteins, healthy fats, and a variety of fruits and vegetables. Stay hydrated and ensure adequate sleep for recovery. Consistency is more important than perfection"""
     
     def get_conv_exaple():
-        return """
-        That’s awesome! Building muscle while staying lean can definitely be done with the right approach. Keep focusing on compound lifts like squats, deadlifts, and bench press for overall strength. For staying lean, make sure you’re eating in a slight caloric surplus with plenty of protein to fuel muscle growth without adding too much fat. And don’t forget to prioritize rest days for recovery—your muscles grow when you rest, not just in the gym
-        """
+        return """That’s awesome! Building muscle while staying lean can definitely be done with the right approach. Keep focusing on compound lifts like squats, deadlifts, and bench press for overall strength. For staying lean, make sure you’re eating in a slight caloric surplus with plenty of protein to fuel muscle growth without adding too much fat. And don’t forget to prioritize rest days for recovery—your muscles grow when you rest, not just in the gym"""
         
     @staticmethod
     def get_table_example():
-        return """
-        {
-                "exercises": [
-                    {
-                    "exercise": "Barbell Bench Press",
-                    "sets": 4,
-                    "reps": 8,
-                    "rest_time_seconds": 90
-                    },
-                    {
-                    "exercise": "Overhead Dumbbell Press",
-                    "sets": 3,
-                    "reps": 10,
-                    "rest_time_seconds": 60
-                    },
-                    {
-                    "exercise": "Incline Dumbbell Fly",
-                    "sets": 3,
-                    "reps": 12,
-                    "rest_time_seconds": 60
-                    },
-                    {
-                    "exercise": "Tricep Dips",
-                    "sets": 3,
-                    "reps": 10,
-                    "rest_time_seconds": 90
-                    },
-                    {
-                    "exercise": "Push-Ups",
-                    "sets": 3,
-                    "reps": 15,
-                    "rest_time_seconds": 60
-                    }
-                ]
-            }"""
+        return '''{"pull_push_split":{"Monday":{"exercises":[{"exercise":"Barbell Deadlift","sets":4,"reps":8,"rest_time_seconds":90},{"exercise":"Pull-Ups","sets":3,"reps":6,"rest_time_seconds":90},{"exercise":"Bent-Over Rows","sets":3,"reps":10,"rest_time_seconds":60},{"exercise":"Face Pulls","sets":3,"reps":12,"rest_time_seconds":60},{"exercise":"Bicep Curls","sets":3,"reps":10,"rest_time_seconds":60}]},"Tuesday":{"exercises":[{"exercise":"Barbell Bench Press","sets":4,"reps":8,"rest_time_seconds":90},{"exercise":"Overhead Dumbbell Press","sets":3,"reps":10,"rest_time_seconds":60},{"exercise":"Incline Dumbbell Fly","sets":3,"reps":12,"rest_time_seconds":60},{"exercise":"Tricep Dips","sets":3,"reps":10,"rest_time_seconds":90},{"exercise":"Push-Ups","sets":3,"reps":15,"rest_time_seconds":60}]},"Wednesday":{"exercises":[{"exercise":"Barbell Rows","sets":4,"reps":8,"rest_time_seconds":90},{"exercise":"Lat Pulldowns","sets":3,"reps":10,"rest_time_seconds":60},{"exercise":"Dumbbell Shrugs","sets":3,"reps":12,"rest_time_seconds":60},{"exercise":"Reverse Flyes","sets":3,"reps":12,"rest_time_seconds":60},{"exercise":"Hammer Curls","sets":3,"reps":10,"rest_time_seconds":60}]},"Thursday":{"exercises":[{"exercise":"Incline Barbell Press","sets":4,"reps":8,"rest_time_seconds":90},{"exercise":"Arnold Press","sets":3,"reps":10,"rest_time_seconds":60},{"exercise":"Chest Dips","sets":3,"reps":10,"rest_time_seconds":90},{"exercise":"Cable Crossovers","sets":3,"reps":12,"rest_time_seconds":60},{"exercise":"Skull Crushers","sets":3,"reps":10,"rest_time_seconds":60}]},"Friday":{"exercises":[{"exercise":"Romanian Deadlift","sets":4,"reps":8,"rest_time_seconds":90},{"exercise":"Seated Cable Rows","sets":3,"reps":10,"rest_time_seconds":60},{"exercise":"Lat Pushdowns","sets":3,"reps":12,"rest_time_seconds":60},{"exercise":"Single-Arm Dumbbell Rows","sets":3,"reps":10,"rest_time_seconds":60},{"exercise":"Concentration Curls","sets":3,"reps":10,"rest_time_seconds":60}]},"Saturday":{"exercises":[{"exercise":"Decline Push-Ups","sets":4,"reps":8,"rest_time_seconds":90},{"exercise":"Military Press","sets":3,"reps":10,"rest_time_seconds":60},{"exercise":"Chest Fly Machine","sets":3,"reps":12,"rest_time_seconds":60},{"exercise":"Tricep Kickbacks","sets":3,"reps":10,"rest_time_seconds":60},{"exercise":"Diamond Push-Ups","sets":3,"reps":10,"rest_time_seconds":60}]},"Sunday":{"exercises":[{"exercise":"Rest Day","sets":0,"reps":0,"rest_time_seconds":0}]}}}'''
