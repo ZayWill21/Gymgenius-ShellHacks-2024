@@ -251,6 +251,10 @@ def process_input():
             return jsonify({'answer': ai_response}), 200
         except Exception as e:
             return jsonify({'error': str(e)}), 500
+
+@app.route('/about')
+def aboutpage():
+    return render_template('Aboutpage.html')
         
 
 # Run the Flask app
