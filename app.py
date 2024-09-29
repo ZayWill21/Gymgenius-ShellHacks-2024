@@ -7,6 +7,8 @@ from api.requests.gg_request import gg_Request, gg_Datatype
 from api.requests.gg_programmer import Programmer
 from api.requests.gg_personalizer import Personalizer
 from flask_socketio import SocketIO, emit
+from flask import send_file
+import os
 
 import threading
 
@@ -183,7 +185,7 @@ def download(filename):
         return send_file(BytesIO(file_data), download_name=filename, as_attachment=True)
     except Exception as e:
         return jsonify({'error': str(e)}), 500
-    
+import json
 @app.route('/clear', methods=['POST'])
 def clear():
     print("CALLED")
@@ -247,21 +249,21 @@ def process_input():
             gg_personalizer = Personalizer(user_question, gg_Datatype.conversation, openai_api)
             ai_response = gg_personalizer.make_request(conversations_json)
 
-        # Save the conversation to the database
-        new_conversation = Conversation(
-            user_question=user_question,
-            ai_response=ai_response,
-            user_id=current_user.id  # Use the current user's ID
-        )
-        db.session.add(new_conversation)
-        db.session.commit()
-        
-        # Return the AI response to the user
-        return jsonify({'answer': ai_response}), 200
+            # Save the conversation to the database
+            new_conversation = Conversation(
+                user_question=user_question,
+                ai_response=ai_response,
+                user_id=current_user.id  # Use the current user's ID
+            )
+            db.session.add(new_conversation)
+            db.session.commit()
+            
+            # Return the AI response to the user
+            return jsonify({'answer': ai_response}), 200
 
-    except Exception as e:
-        # Handle any potential exceptions
-        return jsonify({'answer': f"An error occurred: {str(e)}"}), 500
+        except Exception as e:
+            # Handle any potential exceptions
+            return jsonify({'answer': f"An error occurred: {str(e)}"}), 500
 
 # Define a route to add user data (API)
 @app.route('/add_user', methods=['POST'])
