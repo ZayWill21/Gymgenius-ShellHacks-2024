@@ -1,5 +1,4 @@
 import json
-from ics import Calendar, Event
 from datetime import datetime, timedelta
 from .gg_request import gg_Request
 from .gg_datatype import gg_Datatype
@@ -31,4 +30,3 @@ class Programmer(gg_Request):
             print("ICS file created: schedule.ics")
         return self.last_response
 
-        

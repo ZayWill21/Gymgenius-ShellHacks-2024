@@ -65,6 +65,10 @@ def load_user(user_id):
 with app.app_context():
     db.create_all()
 
+@app.route('/Aboutpage', methods=['GET'])
+def Aboutpage():
+    return render_template('Aboutpage.html')
+
 @login_required
 @app.route('/progresstab', methods=['GET','POST'])
 def progresstab():
