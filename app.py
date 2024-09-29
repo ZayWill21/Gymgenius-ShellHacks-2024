@@ -255,6 +255,10 @@ def aboutpage():
     return render_template('Aboutpage.html')
         
 
+@app.route('/progresstab')
+def progresstab():
+    return render_template('progresstab.html')
+
 # Run the Flask app
 if __name__ == '__main__':
     socketio.run(app, debug=True)
