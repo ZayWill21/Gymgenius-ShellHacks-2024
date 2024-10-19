@@ -58,8 +58,10 @@ Deployment: Gymgenius is deployed using Terraform and Azure App Services. Ensure
      ```
 
 2. **Run the app**:
-   navigate to the locate of app.py
-   in your terminal type flask run 
+   - Run the app:
+     ```bash
+     flask run app.py
+     ```
 or 
 
 Use this link: https://gymgenius-2024-d6a9gacag5fqg2gy.eastus2-01.azurewebsites.net/login
