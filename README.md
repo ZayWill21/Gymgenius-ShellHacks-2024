@@ -51,7 +51,15 @@ Run the app locally:
 Copy code
 flask run
 Deployment: Gymgenius is deployed using Terraform and Azure App Services. Ensure you have the necessary credentials and configurations to deploy the app.
+1. **Install dependencies for the entire project**:
+   - Navigate to the root folder and run:
+     ```bash
+     npm install requirements.txt
+     ```
 
+2. **Run the app**:
+   navigate to the locate of app.py
+   in your terminal type flask run 
 or 
 
 Use this link: https://gymgenius-2024-d6a9gacag5fqg2gy.eastus2-01.azurewebsites.net/login
