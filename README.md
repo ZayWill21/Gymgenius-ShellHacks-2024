@@ -62,10 +62,6 @@ Deployment: Gymgenius is deployed using Terraform and Azure App Services. Ensure
      ```bash
      flask run app.py
      ```
-or 
-
-Use this link: https://gymgenius-2024-d6a9gacag5fqg2gy.eastus2-01.azurewebsites.net/login
-
 # 🤝 Contributing
 We welcome contributions! If you'd like to contribute to Gymgenius, feel free to fork the repository, create a new branch, and submit a pull request. We encourage collaboration to further improve this project and make fitness accessible for all.
 
